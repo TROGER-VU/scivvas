@@ -1,65 +1,120 @@
-import Image from "next/image";
+'use client';
+import Countdown from "@/components/Countdown";
+import Footer from "@/components/Footer";
+import GradientBlinds from "@/components/GradientBlinds";
+import Header from "@/components/Header";
+import WebsiteLoader from "@/components/WebsiteLoader";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const NEXT_EVENT_DATE = "2026-01-03T00:00:00"; 
+  const EVENT_NAME = "Ban Kafila ";
+  
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    // 1. Use 'dvh' for mobile browser bar compatibility
+    <div style={{ 
+      width: '100dvw', 
+      height: '100dvh', // Changed from 100vh to 100dvh
+      minHeight: '-webkit-fill-available', // Fix for iOS Safari 
+      position: 'relative', 
+      overflow: 'hidden',
+      backgroundColor: '#000'
+    }}>
+      <WebsiteLoader/>
+        <Header/>
+
+        {/* Background Layer */}
+        <div style={{ 
+          position: 'absolute', 
+          top: 0, 
+          left: 0, 
+          width: '100%', 
+          height: '100%', 
+          zIndex: 0
+        }}>
+          <GradientBlinds
+            gradientColors={['#FF9FFC', '#ff2929']}
+            angle={20}
+            noise={0.2}
+            blindCount={12}
+            blindMinWidth={50}
+            spotlightRadius={0.5}
+            spotlightSoftness={1}
+            spotlightOpacity={1}
+            mouseDampening={0.15}
+            distortAmount={0}
+            shineDirection="left"
+            mixBlendMode="lighten"
+          />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+
+        {/* Content Layer */}
+        <div style={{ 
+          position: 'relative', 
+          zIndex: 10, 
+          width: '100%', 
+          height: '100%', 
+          display: 'flex', 
+          flexDirection: 'column', 
+          justifyContent: 'center', 
+          alignItems: 'center',
+          color: 'white',
+          padding: '20px', // Added padding to prevent edge touching
+          boxSizing: 'border-box', // Ensures padding doesn't break width
+          pointerEvents: 'none' 
+        }}>
+          
+          <div style={{ pointerEvents: 'auto', textAlign: 'center', maxWidth: '600px' }}>
+              {/* 2. Responsive Typography using clamp() */}
+              <h1 style={{ 
+                  // Scale between 2.5rem (mobile) and 5rem (desktop)
+                  fontSize: 'clamp(2.5rem, 8vw, 5rem)', 
+                  lineHeight: '1.1',
+                  fontWeight: 'bold', 
+                  margin: 0,
+                  marginTop: '180px',
+                  textShadow: '0 4px 30px rgba(0,0,0,0.5)' 
+              }}>
+                  SCIVVAS ENTERTAINMENT
+              </h1>
+              
+              <p style={{ 
+                  // Scale between 1rem and 1.5rem
+                  fontSize: 'clamp(1rem, 4vw, 1.5rem)', 
+                  marginTop: '1rem',
+                  opacity: 0.9,
+                  padding: '0 10px', // Extra breathing room for text
+                  textShadow: '0 4px 30px rgba(0,0,0,0.5)'
+              }}>
+                  Experience the Unforgettable
+              </p>
+
+              <div style={{ margin: '0px 0 50px 0' }}>
+                <Countdown 
+                    targetDate={NEXT_EVENT_DATE} 
+                    eventName={EVENT_NAME}
+                />
+              </div>
+
+            
+              {/* <button style={{ 
+                  marginTop: '2.5rem', 
+                  padding: '16px 40px', // Larger touch target for thumbs
+                  fontSize: '1.1rem', 
+                  borderRadius: '50px', 
+                  border: 'none', 
+                  background: 'white', 
+                  color: 'black',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  boxShadow: '0 10px 20px rgba(0,0,0,0.2)', // Subtle shadow
+                  transition: 'transform 0.2s'
+              }}>
+                  Get Tickets
+              </button> */}
+          </div>
+        <Footer/>
+      </div>  
     </div>
   );
 }
