@@ -296,6 +296,7 @@ void main() {
     const ro = new ResizeObserver(resize);
     ro.observe(container);
 
+
     const onPointerMove = (e: PointerEvent) => {
       const rect = canvas.getBoundingClientRect();
       const scale = (renderer as unknown as { dpr?: number }).dpr || 1;
@@ -306,11 +307,28 @@ void main() {
         uniforms.iMouse.value = [x, y];
       }
     };
-    canvas.addEventListener('pointermove', onPointerMove);
+    const prefersCoarsePointer =
+    typeof window !== 'undefined' && !!window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+  const isMobileScreen = typeof window !== 'undefined' ? window.innerWidth <= 768 : false;
+  const autoAnimatePointer = prefersCoarsePointer || isMobileScreen;
+
+  if (!autoAnimatePointer) canvas.addEventListener('pointermove', onPointerMove);
+
 
     const loop = (t: number) => {
       rafRef.current = requestAnimationFrame(loop);
       uniforms.iTime.value = t * 0.001;
+      if (autoAnimatePointer) {
+      const [w, h] = uniforms.iResolution.value;
+      const time = uniforms.iTime.value;
+      const cx = w / 2;
+      const cy = h / 2;
+      const radiusX = w * 0.25;
+      const radiusY = h * 0.25;
+      const autoX = cx + Math.cos(time * 0.3) * radiusX;
+      const autoY = cy + Math.sin(time * 0.5) * radiusY;
+      mouseTargetRef.current = [autoX, autoY];
+    }
       if (mouseDampening > 0) {
         if (!lastTimeRef.current) lastTimeRef.current = t;
         const dt = (t - lastTimeRef.current) / 1000;
