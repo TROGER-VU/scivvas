@@ -1,4 +1,4 @@
-// components/AboutSection.tsx - mobile flex ordering only
+// components/AboutSection.tsx - mobile font/padding fixes so image is visible on tiny screens
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -58,7 +58,7 @@ const AboutSection: React.FC = () => {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: isMobile ? '150px 20px' : '120px 40px',
+    padding: isMobile ? '100px 12px' : '120px 40px', // reduced mobile padding
     boxSizing: 'border-box',
     overflow: 'hidden'
   };
@@ -76,7 +76,7 @@ const AboutSection: React.FC = () => {
 
   const TITLE_STYLE: React.CSSProperties = {
     fontFamily: 'var(--font-heading)',
-    fontSize: 'clamp(2.2rem, 4.5vw, 3.6rem)',
+    fontSize: isMobile ? '1.6rem' : 'clamp(2.2rem, 4.5vw, 3.6rem)', // smaller on mobile
     fontWeight: 700,
     textTransform: 'uppercase'
   };
@@ -90,7 +90,7 @@ const AboutSection: React.FC = () => {
 
   const STACK_WRAPPER_STYLE: React.CSSProperties = {
     position: 'relative',
-    width: isMobile ? '90vw' : '90vw',
+    width: isMobile ? '94vw' : '90vw',
     height: '100%',
     maxWidth: '1500px',
     overflow: 'hidden'
@@ -111,19 +111,34 @@ const AboutSection: React.FC = () => {
     overflow: 'hidden'
   };
 
+  // TEXT SIDE: reduce padding and font sizes on mobile
   const TEXT_SIDE: React.CSSProperties = {
     flex: 1,
-    padding: isMobile ? '28px' : '56px',
+    padding: isMobile ? '16px' : '56px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center'
   };
 
-  const IMAGE_SIDE_COMMON: React.CSSProperties = {
-    flex: 1,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center'
-  };
+  // IMAGE SIDE: on mobile give it a fixed visible height so it doesn't collapse
+  const IMAGE_SIDE_COMMON: React.CSSProperties = isMobile
+    ? {
+        width: '100%',
+        height: '29vh',         // visible portion on small devices (adjustable)
+        minHeight: '160px',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        flex: '0 0 auto',
+      }
+    : {
+        flex: 1,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      };
+
+  // Font sizes for headings and paragraph adaptively smaller on mobile
+  const CARD_TITLE_FONT = isMobile ? '1.4rem' : '2rem';
+  const CARD_P_FONT = isMobile ? '0.95rem' : '1.05rem';
 
   return (
     <section style={ROOT_STYLE}>
@@ -163,13 +178,13 @@ const AboutSection: React.FC = () => {
 
                 {/* TEXT */}
                 <div style={{ ...TEXT_SIDE, order: textOrder }}>
-                  <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '2rem', color: card.color }}>
+                  <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: CARD_TITLE_FONT, color: card.color, margin: 0 }}>
                     {card.title}
                   </h3>
-                  <p style={{ color: '#ccc', marginTop: '10px' }}>
+                  <p style={{ color: '#ccc', marginTop: '10px', fontSize: CARD_P_FONT }}>
                     {card.id === 0
-                      ? <>At Scivvas Entertainment, events become environments. <br/> <br/> We craft immersive atmospheres where every detail, every beam of light, every shifting wavelength of sound is curated to perfection.</>
-                      : <>We are a curated team of acoustic designers, visual craftsmen, and precision logistics experts delivering flawless experiences.<br/> <br/> Our expertise ensures that each moment is orchestrated with intention, refinement, and unforgettable impact.</>}
+                      ? <>At Scivvas Entertainment, events become environments.<br/><br/>We craft immersive atmospheres where every detail, every beam of light, every shifting wavelength of sound is curated to perfection.</>
+                      : <>We are a curated team of acoustic designers, visual craftsmen, and precision logistics experts delivering flawless experiences.<br/><br/>Our expertise ensures that each moment is orchestrated with intention, refinement, and unforgettable impact.</>}
                   </p>
                 </div>
               </article>
