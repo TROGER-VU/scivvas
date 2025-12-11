@@ -7,6 +7,18 @@ html, body {
   padding: 0;
   /* Make all scroll behavior smooth, which is great for single-page links (#events) */
   scroll-behavior: smooth; 
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0px; /* Remove scrollbar space */
+    background: transparent; /* Optional: Make scrollbar track transparent */
+}
+
+body, 
+#__next { 
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;    /* Firefox */
 }
 
 body {

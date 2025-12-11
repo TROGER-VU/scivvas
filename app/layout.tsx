@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Poppins, Rajdhani, Inter } from "next/font/google";
+import { Rajdhani, Inter } from "next/font/google";
 import "./globals.css";
 
 const rajdhani = Rajdhani({ 
@@ -15,7 +15,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Scivvas",
+  title: "Scivvas Entertainment",
   description: "Scivvas Entertainment Pvt. Ltd.",
 };
 

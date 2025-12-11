@@ -49,7 +49,7 @@ const Footer: React.FC = () => {
             justifyContent: isMobile ? 'center' : 'space-between', // Center everything when stacked
             alignItems: isMobile ? 'center' : 'center', 
             // --- END CRITICAL STYLES ---
-            minHeight: '80px',
+            minHeight: '70px',
             fontFamily: 'var(--font-body)', 
         }}>
 

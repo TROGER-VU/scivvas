@@ -296,7 +296,6 @@ void main() {
     const ro = new ResizeObserver(resize);
     ro.observe(container);
 
-
     const onPointerMove = (e: PointerEvent) => {
       const rect = canvas.getBoundingClientRect();
       const scale = (renderer as unknown as { dpr?: number }).dpr || 1;
