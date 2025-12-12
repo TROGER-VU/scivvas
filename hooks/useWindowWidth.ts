@@ -1,37 +1,26 @@
 // hooks/useWindowWidth.ts
+import { useSyncExternalStore } from 'react';
 
-import { useState, useEffect } from 'react';
+const MOBILE_BREAKPOINT = 768;
+const SERVER_DEFAULT_WIDTH = 1200; // Assume Desktop on Server
 
-// Define the breakpoint for switching between desktop and mobile view
-const MOBILE_BREAKPOINT = 768; 
+export default function useWindowWidth() {
+  const width = useSyncExternalStore(
+    // 1. Subscribe function: React calls this to listen for changes
+    (callback) => {
+      window.addEventListener('resize', callback);
+      return () => window.removeEventListener('resize', callback);
+    },
+    // 2. Get Client Snapshot: Real browser width
+    () => window.innerWidth,
+    // 3. Get Server Snapshot: Safe default for SSR
+    () => SERVER_DEFAULT_WIDTH
+  );
 
-/**
- * Custom hook to get the current window width and a boolean
- * indicating if the screen is considered "mobile" (width < MOBILE_BREAKPOINT).
- */
-const useWindowWidth = () => {
-    const [width, setWidth] = useState(0);
-    const [isMobile, setIsMobile] = useState(false);
+  // We can derive isMobile directly from the width
+  const isMobile = width < MOBILE_BREAKPOINT;
 
-    useEffect(() => {
-        // Function to update state
-        const handleResize = () => {
-            const currentWidth = window.innerWidth;
-            setWidth(currentWidth);
-            setIsMobile(currentWidth < MOBILE_BREAKPOINT);
-        };
-
-        // Initial setup
-        handleResize(); 
-
-        // Add event listener for window resize
-        window.addEventListener('resize', handleResize);
-
-        // Cleanup function to remove event listener on component unmount
-        return () => window.removeEventListener('resize', handleResize);
-    }, []); // Empty dependency array ensures this runs only once
-
-    return { width, isMobile };
-};
-
-export default useWindowWidth;
+  // We return isMounted as true because useSyncExternalStore handles the
+  // initial "server vs client" pass for us safely.
+  return { width, isMobile, isMounted: true };
+}
