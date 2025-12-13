@@ -18,10 +18,10 @@ const MOCK_EVENT_DATA = [
   { 
     id: 2, 
     status: 'PAST', 
-    date: '2025-10-15', 
-    title: 'Dandiya Night 2025', 
+    date: '2025-09-27', 
+    title: 'Dandiya Glow Fest 2025', 
     location: 'Ganges Club, Kanpur', 
-    img: 'url("https://images.unsplash.com/photo-1598440947619-2c3498b0be30?q=80&w=1000&auto=format&fit=crop")',
+    img: 'url("/dandiya.jpeg")',
     description: 'The official debut of Scivvas Entertainment. Sold out in 2 hours.'
   },
 //   { 
@@ -172,9 +172,11 @@ const EventsSection: React.FC = () => {
   };
 
   const PAST_IMAGE_STYLE: React.CSSProperties = {
-    height: '200px',
-    backgroundSize: 'cover',
+    height: '400px',
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
+    flexShrink: 0
   };
 
   const PAST_TEXT_STYLE: React.CSSProperties = {
