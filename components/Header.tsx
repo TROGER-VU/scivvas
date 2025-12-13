@@ -43,8 +43,9 @@ const Header: React.FC = () => {
         justifyContent: 'space-between',
         alignItems: 'center',
         color: 'white',
-        // background: 'rgba(0, 0, 0, 0.4)',
-        // backdropFilter: 'blur(10px)',
+        background: 'rgba(0, 0, 0, 0.4)',
+        backdropFilter: 'blur(10px)',
+        borderRadius: '120px',
         // WebkitBackdropFilter: 'blur(10px)',
         // height: '70px',
     };

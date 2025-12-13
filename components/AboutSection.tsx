@@ -179,7 +179,7 @@ const AboutSection: React.FC = () => {
 
   const TEXT_STYLE: React.CSSProperties = {
     // flex: 1,
-    padding: isMobile ? vh > 750 ? '50px 30px':  '6px 12px' : '56px',
+    padding: isMobile ? vh > 770 ? '50px 30px':  '6px 12px' : '56px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
