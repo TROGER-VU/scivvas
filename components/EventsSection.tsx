@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 /* ===========================
@@ -9,15 +10,17 @@ const MOCK_EVENT_DATA = [
     id: 1, 
     status: 'UPCOMING', 
     date: '2026-01-03', 
-    title: 'BAN Kafila', 
+    title: 'BAN Kafila',
+    slug: 'kafila', 
     location: 'PAC Ground, Kanpur', 
-    img: 'url("https://images.unsplash.com/photo-1549487961-4c126839352e?q=80&w=1000&auto=format&fit=crop")',
+    img: 'url("/kafila.jpeg")',
     description:
       'An immersive, 3-day experience featuring 10+ headline DJs and cutting-edge visual production. Get ready for the ultimate sensory overload.'
   },
   { 
     id: 2, 
-    status: 'PAST', 
+    status: 'PAST',
+    slug: 'dandiya', 
     date: '2025-09-27', 
     title: 'Dandiya Glow Fest 2025', 
     location: 'Ganges Club, Kanpur', 
@@ -135,8 +138,9 @@ const EventsSection: React.FC = () => {
 
   const UPCOMING_IMAGE_STYLE: React.CSSProperties = {
     width: isMobile ? '100%' : '50%',
-    height: isMobile ? '220px' : '400px',
-    backgroundSize: 'cover',
+    height: isMobile ? '400px' : '450px',
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
   };
 
@@ -223,8 +227,9 @@ const EventsSection: React.FC = () => {
       <h2 style={SUBSECTION_HEADER}>Past Events</h2>
       <div style={PAST_GRID_STYLE}>
         {pastEvents.map(event => (
-          <div
+          <Link
             key={event.id}
+            href={`/gallery/${event.slug}`}
             style={{
               ...PAST_CARD_STYLE,
               transform: hoveredId === event.id ? 'translateY(-5px)' : 'none',
@@ -248,7 +253,7 @@ const EventsSection: React.FC = () => {
               {event.description}
             </p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>

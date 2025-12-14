@@ -68,21 +68,44 @@ const Header: React.FC = () => {
     return (
         <header style={headerStyle}>
             
-            {/* 1. Logo/Brand Name */}
+            {/* 1. Logo / Brand Name */}
             <Link href="/" style={{ textDecoration: 'none' }}>
-                <div style={{ 
-                    fontSize: '1.5rem', 
-                    fontWeight: '900', 
+            <div
+                style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '1px',
+                cursor: 'pointer',
+                flexShrink: 0
+                }}
+            >
+                {/* Logo */}
+                <img
+                src="/logo.png"     // put logo in /public/logo.png
+                alt="Logo"
+                style={{
+                    width: '40px',
+                    height: '40px',
+                    objectFit: 'contain'
+                }}
+                />
+
+                {/* Brand Text */}
+                <div
+                style={{
+                    fontSize: '1.5rem',
+                    fontWeight: '900',
                     letterSpacing: '1px',
-                    cursor: 'pointer',
                     background: 'linear-gradient(90deg, #FF9FFC, #ff2929)',
                     WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    flexShrink: 0
-                }}>
-                    SCIVVAS
+                    WebkitTextFillColor: 'transparent'
+                }}
+                >
+                SCIVVAS
                 </div>
+            </div>
             </Link>
+
 
                 {/* 2. Desktop Navigation Links (Conditional Rendering) */}
                 {!isMobile && (
@@ -134,7 +157,10 @@ const Header: React.FC = () => {
 
                 {/* 3. CTA Button - HIDDEN ON MOBILE */}
                 {!isMobile && ( // <-- Only show button if NOT mobile
-                    <button 
+                    <button
+                        onClick={() => {
+                        window.location.href = 'mailto:management@scivvas.com';
+                        }} 
                         style={{ 
                             padding: '10px 25px', 
                             fontSize: '0.9rem', 

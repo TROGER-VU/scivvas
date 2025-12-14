@@ -17,6 +17,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Scivvas Entertainment",
   description: "Scivvas Entertainment Pvt. Ltd.",
+  icons: [
+    { rel: 'icon', url: '/logo.png', type: 'image/x-icon' }
+  ]
 };
 
 export default function RootLayout({
