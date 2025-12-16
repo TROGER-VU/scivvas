@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
             backgroundColor: 'transparent', 
             color: 'rgba(255, 255, 255, 0.7)', 
             padding: isMobile ? '30px 20px' : '30px 40px', // Less horizontal padding on mobile
-            // marginTop: '100px', 
+            marginBottom: isMobile ? '0px' : '20px', 
             // --- CRITICAL FLEX STYLES FOR MOBILE ---
             display: 'flex',
             flexDirection: isMobile ? 'column' : 'row', // Stack vertically on mobile

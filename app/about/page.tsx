@@ -20,13 +20,13 @@ export default function AboutPage() {
         },
         {
             id: 2,
-            img: './team/arpan.png',
+            img: './logomain.png',
             name: 'Nidhish Gupta',
             text: <>Director</>
         },
         {
             id: 3,
-            img: './team/arpan.png',
+            img: './team/aryan_singh.jpeg',
             name: 'Aryan Singh',
             text: <>Director</>
         },

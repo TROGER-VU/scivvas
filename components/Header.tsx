@@ -12,7 +12,7 @@ interface NavLink {
 
 const navLinks: NavLink[] = [
     { name: 'EVENTS', href: '/events' },
-    { name: 'ARTISTS', href: '/artists' },
+    // { name: 'ARTISTS', href: '/artists' },
     { name: 'ABOUT', href: '/about' },
     { name: 'GALLERY', href: '/gallery' },
 ];

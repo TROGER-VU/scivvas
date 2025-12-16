@@ -7,7 +7,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WebsiteLoader from '@/components/WebsiteLoader';
 import DotGrid from '@/components/DotGrid';
-import EventsSection from '@/components/EventsSection';
 import ArtistsSection from '@/components/ArtistsSection';
 
 export default function ArtistsPage() {

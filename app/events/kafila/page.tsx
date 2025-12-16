@@ -265,6 +265,12 @@ export default function EventPage() {
         color: 'white'
     };
 
+    const SECTION_LOCATION_STYLE: React.CSSProperties = {
+        padding: '50px 5%',
+        backgroundColor: 'black',
+        color: 'white'
+    };
+
     const GRID_STYLE: React.CSSProperties = {
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
@@ -387,7 +393,7 @@ export default function EventPage() {
                     </div>
                 </div>
             </section>
-            <section style={{ ...SECTION_STYLE, backgroundColor: '#000' }}>
+            <section style={{ ...SECTION_LOCATION_STYLE, backgroundColor: '#000' }}>
             <h2
               style={{
                 textAlign: 'center',
