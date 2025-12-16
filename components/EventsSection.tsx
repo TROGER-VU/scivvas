@@ -163,7 +163,7 @@ const EventsSection: React.FC = () => {
     fontWeight: 'bold',
     border: 'none',
     borderRadius: '5px',
-    cursor: 'pointer',
+    // cursor: 'pointer',
     marginTop: '20px', // Spacing above button
     textTransform: 'uppercase',
     letterSpacing: '0.5px',
@@ -210,15 +210,17 @@ const EventsSection: React.FC = () => {
             <p style={{ color: '#999', lineHeight: 1.6 }}>
               {event.description}
             </p>
+            <Link href={'/events/kafila'}>
             <button
                 style={BUTTON_STYLE}
                 // Inline pseudo-classes for a simple hover effect since we are using inline styles
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#cc2323')}
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#ff2929')}
-                onClick={() => alert(`Redirecting to tickets for ${event.title}!`)}
+                // onClick={() => alert(`Redirecting to tickets for ${event.title}!`)}
             >
-                Get Tickets
+                KNOW MORE
             </button>
+            </Link>
           </div>
         </div>
       ))}

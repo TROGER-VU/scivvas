@@ -57,7 +57,7 @@ export default function EventGalleryPage({ params }: PageProps) {
             color: 'white',
             padding: '10px 20px',
             borderRadius: '50px',
-            cursor: 'pointer',
+            // cursor: 'pointer',
             backdropFilter: 'blur(5px)',
             fontSize: '0.9rem',
             fontWeight: 'bold',

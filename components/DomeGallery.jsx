@@ -1025,7 +1025,7 @@ export default function DomeGallery({
       inset: 10px;
       border-radius: var(--tile-radius, 12px);
       overflow: hidden;
-      cursor: pointer;
+      // cursor: pointer;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
       transition: transform 300ms;
@@ -1087,7 +1087,7 @@ export default function DomeGallery({
                   }}
                 >
                   <div
-                    className="item__image absolute block overflow-hidden cursor-pointer bg-gray-200 transition-transform duration-300"
+                    className="item__image absolute block overflow-hidden bg-gray-200 transition-transform duration-300"
                     role="button"
                     tabIndex={0}
                     aria-label={it.alt || 'Open image'}

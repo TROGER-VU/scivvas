@@ -42,3 +42,48 @@ h1, h2, h3, h4, h5, h6 {
         opacity: 1;
     }
 }
+/* Hide system cursor */
+* {
+  cursor: none;
+}
+
+/* Main cursor */
+.treble-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+
+.treble-cursor img {
+  width: 44px;
+  height: auto;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.35));
+}
+
+/* Trail container */
+.treble-trail-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* Individual trail ghost */
+.treble-trail {
+  position: absolute;
+  width: 68px;
+  transform: translate(50%, 50%) scale(0.9);
+  opacity: 0.5;
+  filter: blur(0.5px);
+  animation: trebleFade 0.6s ease-out forwards;
+}
+
+@keyframes trebleFade {
+  to {
+    opacity: 0;
+    transform: translate(50%, 50%) scale(0.6);
+  }
+}

@@ -117,7 +117,7 @@ const GallerySection: React.FC = () => {
             gridRow,
             borderRadius: '16px',
             overflow: 'hidden',
-            cursor: 'pointer',
+            // cursor: 'pointer',
             border: `1px solid ${isHovered ? PRIMARY_COLOR : 'rgba(255,255,255,0.1)'}`,
             transition: 'border-color 0.4s ease, transform 0.4s ease',
             transform: isHovered && !isMobile ? 'translateY(-5px)' : 'none',

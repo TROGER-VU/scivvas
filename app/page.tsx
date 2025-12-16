@@ -17,7 +17,7 @@ export default function Home() {
       height: '100dvh', // Changed from 100vh to 100dvh
       minHeight: '-webkit-fill-available', // Fix for iOS Safari 
       position: 'relative', 
-      overflow: 'hidden',
+      // overflow: 'hidden',
       backgroundColor: '#000'
     }}>
       <WebsiteLoader/>
@@ -72,7 +72,7 @@ export default function Home() {
                   lineHeight: '1.1',
                   fontWeight: 'bold', 
                   margin: 0,
-                  marginTop: '180px',
+                  marginTop: '130px',
                   textShadow: '0 4px 30px rgba(0,0,0,0.5)' 
               }}>
                   SCIVVAS ENTERTAINMENT

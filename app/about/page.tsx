@@ -8,18 +8,131 @@ import Footer from "@/components/Footer";
 import AboutSection from "@/components/AboutSection";
 import WebsiteLoader from '@/components/WebsiteLoader';
 import DotGrid from '@/components/DotGrid';
+import PixelTransition from '@/components/PixelTransition';
 
 export default function AboutPage() {
-    // Style to hide the scrollbar (applied to the main container)
-    // const hiddenScrollbarStyle: React.CSSProperties = {
-    //     // Hides overflow in case of a bug, but should be managed by content sizing
-    //     overflowX: 'hidden', 
-        
-    //     // Hide scrollbar but keep scroll functionality (Webkit browsers)
-    //     WebkitOverflowScrolling: 'touch', // Allows inertial scrolling on iOS
-    //     msOverflowStyle: 'none',          // IE and Edge
-    //     scrollbarWidth: 'none', 
-    // };
+    const PIXEL_CARDS = [
+        {
+            id: 1,
+            img: './team/arpan.png',
+            name: 'Arpan Shukla',
+            text: <>Director</>
+        },
+        {
+            id: 2,
+            img: './team/arpan.png',
+            name: 'Nidhish Gupta',
+            text: <>Director</>
+        },
+        {
+            id: 3,
+            img: './team/arpan.png',
+            name: 'Aryan Singh',
+            text: <>Director</>
+        },
+        {
+            id: 4,
+            img: './team/satvik.jpeg',
+            name: 'Satvik Singh Chauhan',
+            text: <>Director</>
+        },
+        {
+            id: 5,
+            img: './team/ankan_verma.jpeg',
+            name: 'Ankan Verma',
+            text: <>Director</>
+        },
+        {
+            id: 6,
+            img: './team/aryan_gupta.jpeg',
+            name: 'Aryan Gupta',
+            text: <>Director</>
+        },
+        {
+            id: 7,
+            img: './team/ayush_verma.jpeg',
+            name: 'Ayush Verma',
+            text: <>Director</>
+        }
+    ];
+
+    const SECTION_STYLE: React.CSSProperties = {
+        maxWidth: '1200px',
+        margin: '0 auto',
+        padding: '3rem 1.5rem 8rem', // Increased padding for separation
+        alignContent: 'center',
+        color: 'white', // Ensure heading is white
+        textAlign: 'center'
+    };
+    
+    const HEADING_STYLE: React.CSSProperties = {
+        fontFamily: 'var(--font-heading)', // Use your heading font
+        fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+        fontWeight: 900,
+        textTransform: 'uppercase',
+        marginBottom: '1rem',
+        color: '#ff2929', // Neon Pink accent for the heading
+        letterSpacing: '5px'
+    };
+
+    const GRID_STYLE: React.CSSProperties = {
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+        gap: '2rem',
+        justifyItems: 'center'
+    };
+
+    // Style for the text content that appears on hover
+    const HOVER_TEXT_STYLE: React.CSSProperties = {
+        width: '100%',
+        height: '100%',
+        display: 'grid',
+        placeItems: 'center',
+        backgroundColor: '#111',
+        padding: '20px',
+        boxSizing: 'border-box'
+    };
+
+    const CARD_CONTENT_STYLE: React.CSSProperties = {
+        fontWeight: 900,
+        textAlign: 'center',
+        color: '#fff',
+        lineHeight: 1.1,
+    };
+
+    const CARD_NAME_STYLE: React.CSSProperties = {
+        fontFamily: 'var(--font-heading)', // Use the main heading font for the Name
+        fontSize: '2rem',
+        textTransform: 'uppercase',
+        marginBottom: '0.5rem',
+        display: 'block'
+    };
+
+    const CARD_TEXT_STYLE: React.CSSProperties = {
+        fontFamily: 'monospace', // Use a monospaced font for the Role/Text
+        fontSize: '1.5rem',
+        textTransform: 'uppercase',
+        color: '#ff2929', // Use neon accent color for the role
+        letterSpacing: '2px',
+        display: 'block'
+    };
+
+    const CARD_GLOW_WRAPPER: React.CSSProperties = {
+        position: 'relative',
+        borderRadius: '18px',
+    };
+
+    const CARD_GLOW_BG: React.CSSProperties = {
+        position: 'absolute',
+        inset: '-18px',
+        background:
+            'radial-gradient(circle at center, rgba(255,41,41,0.35), transparent 65%)',
+        filter: 'blur(30px)',
+        zIndex: 0,
+        pointerEvents: 'none'
+    };
+
+
     
     return (
         // 1. Root Container: 
@@ -70,6 +183,50 @@ export default function AboutPage() {
             }}>
                 
                 <AboutSection /> 
+                <section
+                    style={SECTION_STYLE}
+                    >
+                        <h2 style={HEADING_STYLE}>OUR TEAM</h2>
+                    <div
+                        style={GRID_STYLE}
+                    >
+                        {PIXEL_CARDS.map(card => (
+                        <PixelTransition
+                            key={card.id}
+                            gridSize={12}
+                            pixelColor="#ffffff"
+                            animationStepDuration={0.4}
+                            aspectRatio="120%"
+                            once={false}
+                            firstContent={
+                            <div style={{ width: '100%', height: '100%' }}>
+                                <img
+                                    src={card.img}
+                                    alt={`Profile of ${card.name}`}
+                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                />
+                            </div>
+                            }
+                            secondContent={
+                            <div style={HOVER_TEXT_STYLE}>
+                                <p style={CARD_CONTENT_STYLE}>
+                                    {/* 2. Apply font style to Name */}
+                                    <span style={CARD_NAME_STYLE}>
+                                        {card.name} 
+                                    </span>
+                                    
+                                    {/* 3. Apply font style to Text (Role) */}
+                                    <span style={CARD_TEXT_STYLE}>
+                                        {card.text}
+                                    </span>
+                                </p>
+                            </div>
+                            }
+                        />
+                        ))}
+                    </div>
+                </section>
+
                 <Footer />
             </main>
         </div>

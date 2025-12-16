@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
         color: 'white',
         textDecoration: 'none',
         transition: 'transform 0.2s ease, color 0.2s ease, filter 0.2s ease',
-        cursor: 'pointer',
+        // cursor: 'pointer',
         display: 'flex',
         alignItems: 'center',
     };
