@@ -15,7 +15,7 @@ const MOCK_EVENT_DATA = [
     location: 'PAC Ground, Kanpur', 
     img: 'url("/kafila.jpeg")',
     description:
-      'An immersive, 3-day experience featuring 10+ headline DJs and cutting-edge visual production. Get ready for the ultimate sensory overload.'
+      <>Kanpur get ready for the biggest concert of Masoom Sharma, and do you know who&apos;s hosting this concert <br/>SCIVVAS ENTERTAINMENT</>
   },
   { 
     id: 2, 
@@ -218,7 +218,7 @@ const EventsSection: React.FC = () => {
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#ff2929')}
                 // onClick={() => alert(`Redirecting to tickets for ${event.title}!`)}
             >
-                KNOW MORE
+                GET TICKETS
             </button>
             </Link>
           </div>
