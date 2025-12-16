@@ -3,6 +3,7 @@ import Countdown from "@/components/Countdown";
 import Footer from "@/components/Footer";
 import GradientBlinds from "@/components/GradientBlinds";
 import Header from "@/components/Header";
+import SwipeButton from "@/components/SwipeButton";
 import WebsiteLoader from "@/components/WebsiteLoader";
 import { useEffect, useState } from "react";
 
@@ -89,16 +90,24 @@ export default function Home() {
                   Experience the Unforgettable
               </p>
 
-              <div style={{ margin: '0px 0 50px 0' }}>
+              <div style={{ margin: '0px 0 0px 0' }}>
                 <Countdown 
                     targetDate={NEXT_EVENT_DATE} 
                     eventName={EVENT_NAME}
                 />
               </div>
 
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <SwipeButton 
+                  text="SWIPE FOR TICKETS" 
+                  destination="/events/kafila"  // Where it goes after swipe
+                  mainColor="#990000" // Neon Pink
+              />
+          </div>
+
             
               {/* <button style={{ 
-                  marginTop: '2.5rem', 
+                  // marginTop: '2.5rem', 
                   padding: '16px 40px', // Larger touch target for thumbs
                   fontSize: '1.1rem', 
                   borderRadius: '50px', 

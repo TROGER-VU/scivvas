@@ -8,6 +8,10 @@ html, body {
   /* Make all scroll behavior smooth, which is great for single-page links (#events) */
   scroll-behavior: smooth; 
   overflow-x: hidden;
+  user-select: none;
+  -webkit-user-select: none; /* Safari/iOS */
+  -moz-user-select: none;
+  cursor: default;
 }
 
 ::-webkit-scrollbar {
