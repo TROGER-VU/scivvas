@@ -3,7 +3,7 @@ import EventMap from '@/components/EventMap';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const EVENT_DATA = {
     title: "BAN KAFILA",
@@ -25,51 +25,51 @@ const EVENT_DATA = {
 // --- COMPONENTS ---
 
 // 1. COUNTDOWN TIMER COMPONENT
-const Countdown = ({ targetDate }: { targetDate: string }) => {
-    const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+// const Countdown = ({ targetDate }: { targetDate: string }) => {
+//     const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
     
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            const now = new Date().getTime();
-            const target = new Date(targetDate).getTime();
-            const distance = target - now;
+//     useEffect(() => {
+//         const interval = setInterval(() => {
+//             const now = new Date().getTime();
+//             const target = new Date(targetDate).getTime();
+//             const distance = target - now;
 
-            if (distance < 0) {
-                clearInterval(interval);
-                return;
-            }
+//             if (distance < 0) {
+//                 clearInterval(interval);
+//                 return;
+//             }
 
-            setTimeLeft({
-                days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-                hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-                minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-                seconds: Math.floor((distance % (1000 * 60)) / 1000),
-            });
-        }, 1000);
+//             setTimeLeft({
+//                 days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+//                 hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+//                 minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+//                 seconds: Math.floor((distance % (1000 * 60)) / 1000),
+//             });
+//         }, 1000);
 
-        return () => clearInterval(interval);
-    }, [targetDate]);
+//         return () => clearInterval(interval);
+//     }, [targetDate]);
 
-    const BOX_STYLE: React.CSSProperties = {
-        display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 15px'
-    };
-    const NUMBER_STYLE: React.CSSProperties = {
-        fontSize: '3rem', fontWeight: 900, fontFamily: 'monospace', color: 'white', lineHeight: 1
-    };
-    const LABEL_STYLE: React.CSSProperties = {
-        fontSize: '0.8rem', color: '#888', textTransform: 'uppercase', letterSpacing: '2px', marginTop: '5px'
-    };
+//     const BOX_STYLE: React.CSSProperties = {
+//         display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 15px'
+//     };
+//     const NUMBER_STYLE: React.CSSProperties = {
+//         fontSize: '3rem', fontWeight: 900, fontFamily: 'monospace', color: 'white', lineHeight: 1
+//     };
+//     const LABEL_STYLE: React.CSSProperties = {
+//         fontSize: '0.8rem', color: '#888', textTransform: 'uppercase', letterSpacing: '2px', marginTop: '5px'
+//     };
 
-    return (
-        <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', marginTop: '40px' }}>
-            <div style={BOX_STYLE}><span style={NUMBER_STYLE}>{timeLeft.days}</span><span style={LABEL_STYLE}>Days</span></div>
-            <div style={BOX_STYLE}><span style={NUMBER_STYLE}>{timeLeft.hours}</span><span style={LABEL_STYLE}>Hrs</span></div>
-            <div style={BOX_STYLE}><span style={NUMBER_STYLE}>{timeLeft.minutes}</span><span style={LABEL_STYLE}>Mins</span></div>
-            <div style={BOX_STYLE}><span style={{...NUMBER_STYLE, color: '#ff2929'}}>{timeLeft.seconds}</span><span style={LABEL_STYLE}>Secs</span></div>
-        </div>
-    );
-};
+//     return (
+//         <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', marginTop: '40px' }}>
+//             <div style={BOX_STYLE}><span style={NUMBER_STYLE}>{timeLeft.days}</span><span style={LABEL_STYLE}>Days</span></div>
+//             <div style={BOX_STYLE}><span style={NUMBER_STYLE}>{timeLeft.hours}</span><span style={LABEL_STYLE}>Hrs</span></div>
+//             <div style={BOX_STYLE}><span style={NUMBER_STYLE}>{timeLeft.minutes}</span><span style={LABEL_STYLE}>Mins</span></div>
+//             <div style={BOX_STYLE}><span style={{...NUMBER_STYLE, color: '#ff2929'}}>{timeLeft.seconds}</span><span style={LABEL_STYLE}>Secs</span></div>
+//         </div>
+//     );
+// };
 
 // 2. TICKET CARD COMPONENT
 interface TicketTier {
@@ -82,7 +82,7 @@ interface TicketTier {
 
 const TicketCard = ({ tier }: { tier: TicketTier }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const PRIMARY_COLOR = '#FF9FFC';
+  // const PRIMARY_COLOR = '#FF9FFC';
   const isSoldOut = tier.status === 'SOLD OUT';
 
   return (
@@ -227,37 +227,37 @@ export default function EventPage() {
     const event = EVENT_DATA; 
 
     // --- STYLES ---
-    const PRIMARY_COLOR = '#FF9FFC';
+    // const PRIMARY_COLOR = '#FF9FFC';
     
-    const HERO_STYLE: React.CSSProperties = {
-        minHeight: '100vh',
-        width: '100%',
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-        padding: '20px',
-        overflow: 'hidden',
-    };
+    // const HERO_STYLE: React.CSSProperties = {
+    //     minHeight: '100vh',
+    //     width: '100%',
+    //     position: 'relative',
+    //     display: 'flex',
+    //     flexDirection: 'column',
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    //     textAlign: 'center',
+    //     padding: '20px',
+    //     overflow: 'hidden',
+    // };
 
-    const BACKGROUND_IMG: React.CSSProperties = {
-        position: 'absolute',
-        top: 0, left: 0, width: '100%', height: '100%',
-        backgroundImage: `url(${event.coverImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        zIndex: -2,
-        filter: 'grayscale(20%) brightness(0.8)', // Dark aesthetic
-    };
+    // const BACKGROUND_IMG: React.CSSProperties = {
+    //     position: 'absolute',
+    //     top: 0, left: 0, width: '100%', height: '100%',
+    //     backgroundImage: `url(${event.coverImage})`,
+    //     backgroundSize: 'cover',
+    //     backgroundPosition: 'center',
+    //     zIndex: -2,
+    //     filter: 'grayscale(20%) brightness(0.8)', // Dark aesthetic
+    // };
 
-    const GRADIENT_OVERLAY: React.CSSProperties = {
-        position: 'absolute',
-        top: 0, left: 0, width: '100%', height: '100%',
-        background: 'linear-gradient(to bottom, rgba(0,0,0,0.3), #000)',
-        zIndex: -1
-    };
+    // const GRADIENT_OVERLAY: React.CSSProperties = {
+    //     position: 'absolute',
+    //     top: 0, left: 0, width: '100%', height: '100%',
+    //     background: 'linear-gradient(to bottom, rgba(0,0,0,0.3), #000)',
+    //     zIndex: -1
+    // };
 
     const SECTION_STYLE: React.CSSProperties = {
         padding: '100px 5%',
@@ -273,11 +273,11 @@ export default function EventPage() {
     };
     
 
-    const formattedDate = new Intl.DateTimeFormat('en-US', {
-        weekday: 'long',
-        month: 'long',
-        day: 'numeric',
-        }).format(new Date(event.date));
+    // const formattedDate = new Intl.DateTimeFormat('en-US', {
+    //     weekday: 'long',
+    //     month: 'long',
+    //     day: 'numeric',
+    //     }).format(new Date(event.date));
 
 
     return (

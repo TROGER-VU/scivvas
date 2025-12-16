@@ -117,20 +117,20 @@ export default function AboutPage() {
         display: 'block'
     };
 
-    const CARD_GLOW_WRAPPER: React.CSSProperties = {
-        position: 'relative',
-        borderRadius: '18px',
-    };
+    // const CARD_GLOW_WRAPPER: React.CSSProperties = {
+    //     position: 'relative',
+    //     borderRadius: '18px',
+    // };
 
-    const CARD_GLOW_BG: React.CSSProperties = {
-        position: 'absolute',
-        inset: '-18px',
-        background:
-            'radial-gradient(circle at center, rgba(255,41,41,0.35), transparent 65%)',
-        filter: 'blur(30px)',
-        zIndex: 0,
-        pointerEvents: 'none'
-    };
+    // const CARD_GLOW_BG: React.CSSProperties = {
+    //     position: 'absolute',
+    //     inset: '-18px',
+    //     background:
+    //         'radial-gradient(circle at center, rgba(255,41,41,0.35), transparent 65%)',
+    //     filter: 'blur(30px)',
+    //     zIndex: 0,
+    //     pointerEvents: 'none'
+    // };
 
 
     

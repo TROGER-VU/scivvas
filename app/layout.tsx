@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Rajdhani, Inter } from "next/font/google";
 import "./globals.css";
-import WandCursor from "@/components/WandCursor";
 import CustomCursor from "@/components/CustomCursor";
 
 const rajdhani = Rajdhani({ 
