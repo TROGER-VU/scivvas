@@ -38,7 +38,7 @@ export default function AboutPage() {
         },
         {
             id: 5,
-            img: './team/ankan_verma.jpeg',
+            img: './team/ankan.jpeg',
             name: 'Ankan Verma',
             text: <>Director</>
         },
