@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Rajdhani, Inter } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const rajdhani = Rajdhani({ 
   subsets: ['latin'],
@@ -35,6 +37,8 @@ export default function RootLayout({
       >
         <CustomCursor/>
         {children}
+        <Analytics/>
+        <SpeedInsights/>
       </body>
     </html>
   );
