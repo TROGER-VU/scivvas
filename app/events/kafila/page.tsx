@@ -14,11 +14,11 @@ const EVENT_DATA = {
     coverImage: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1600&auto=format&fit=crop",
     lineup: ["MASOOM SHARMA"],
     tickets: [
-        { name: "SILVER", price: "₹999", status: "SELLING FAST", features: ["₹200 Food Voucher", "Silver Stand Access"], accentColor: '#C0C0C0' },
+        { name: "SILVER", price: "₹1199", status: "SELLING FAST", features: ["₹200 Food Voucher", "Silver Stand Access"], accentColor: '#C0C0C0' },
         { name: "GOLD", price: "₹2199", status: "SELLING FAST", features: ["₹200 Food Voucher", "Gold Stand Access"], accentColor: '#FFD700' },
-        { name: "FANPIT", price: "₹5000", status: "SELLING FAST", features: ["₹200 Food Voucher", "Fanpit Stand Access"], accentColor: '#A020F0', },
-        { name: "VIP TABLE", price: "₹15000", status: "AVAILABLE", features: ["Limited for 4 people", "Elevated Area", "Unlimited Fooding", "1 Bottle Premium Whisky", "4 Bottles Beer", "Unlimited Energy Drink"], accentColor: '#FFE5B4' },
-        { name: "VVIP TABLE", price: "₹25000", status: "AVAILABLE", features: ["Limited for 6 people", "Elevated Area", "Unlimited Fooding", "2 Bottles Premium Whisky", "6 Bottles Beer", "Unlimited Energy Drink"], accentColor: '#00FFFF' },
+        { name: "FANPIT", price: "₹4999", status: "SELLING FAST", features: ["₹200 Food Voucher", "Fanpit Stand Access"], accentColor: '#A020F0', },
+        { name: "VIP TABLE", price: "₹19999", status: "AVAILABLE", features: ["Limited for 4 people", "Elevated Area", "Unlimited Fooding", "2 Bottle Premium Whisky", "4 Bottles Beer", "Unlimited Energy Drink"], accentColor: '#FFE5B4' },
+        { name: "VVIP TABLE", price: "₹29999", status: "AVAILABLE", features: ["Limited for 6 people", "Elevated Area", "Unlimited Fooding", "2 Bottles Premium Whisky", "6 Bottles Beer", "Unlimited Energy Drink"], accentColor: '#00FFFF' },
     ]
 };
 
