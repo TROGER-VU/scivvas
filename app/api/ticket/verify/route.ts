@@ -9,6 +9,10 @@ type VerifyBody = {
   razorpay_order_id: string;
   razorpay_signature: string;
 };
+type OrderTicket = {
+  tierId: string;
+  qty: number;
+};
 
 /* ===================== MAILER ===================== */
 const transporter = nodemailer.createTransport({
@@ -88,7 +92,7 @@ export async function POST(req: Request) {
     /* ===================== 6. EMAIL TICKET ===================== */
     try {
       const ticketSummary = order.tickets
-        .map(t => `<li>${t.qty} x ${t.tierId.toUpperCase()}</li>`)
+        .map((t: OrderTicket) => `<li>${t.qty} x ${t.tierId.toUpperCase()}</li>`)
         .join('');
 
       await transporter.sendMail({
