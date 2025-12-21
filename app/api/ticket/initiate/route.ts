@@ -18,13 +18,20 @@ type RequestBody = {
   cart: CartItem[];
 };
 
-const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID!,
-  key_secret: process.env.RAZORPAY_KEY_SECRET!
-});
+function getRazorpay() {
+  if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
+    throw new Error('Razorpay keys missing');
+  }
+
+  return new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET
+  });
+}
 
 export async function POST(req: Request) {
   try {
+    const razorpay = getRazorpay();
     const body = (await req.json()) as RequestBody;
     const { customer, cart } = body;
 
