@@ -15,6 +15,7 @@ type OrderTicket = {
 export async function POST(req: Request) {
   const rawBody = await req.text();
   const signature = req.headers.get('x-razorpay-signature');
+  console.log('🔥 Razorpay webhook received');
 
   if (!signature) {
     return NextResponse.json({ error: 'Missing signature' }, { status: 400 });
