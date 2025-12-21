@@ -27,9 +27,6 @@ const transporter = nodemailer.createTransport({
     rejectUnauthorized: false, // GoDaddy quirk
   },
 });
-await transporter.verify();
-console.log('GoDaddy SMTP ready');
-
 
 export async function POST(req: Request) {
   try {
@@ -78,15 +75,13 @@ export async function POST(req: Request) {
     const qrBuffer = await QRCode.toBuffer(qrPayload);
 
     /* ===================== 5. ATOMIC DB UPDATE ===================== */
-    await prisma.$transaction([
-      prisma.order.update({
+    await prisma.order.update({
         where: { id: order.id },
         data: {
           status: 'PAID',
           qrCode
         }
-      })
-    ]);
+      });
 
 
     /* ===================== 6. EMAIL TICKET ===================== */
