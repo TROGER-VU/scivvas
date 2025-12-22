@@ -17,6 +17,7 @@ export const EVENT_DATA = {
   lineup: ["MASOOM SHARMA"],
   tickets: [
     {
+      id: "silver",
       name: "SILVER",
       price: "₹1200",
       status: "SELLING FAST",
@@ -24,6 +25,7 @@ export const EVENT_DATA = {
       accentColor: "#C0C0C0",
     },
     {
+      id: "gold",
       name: "GOLD",
       price: "₹2200",
       status: "SELLING FAST",
@@ -31,6 +33,7 @@ export const EVENT_DATA = {
       accentColor: "#FFD700",
     },
     {
+      id: "fanpit",
       name: "FANPIT",
       price: "₹5000",
       status: "SELLING FAST",
@@ -38,22 +41,24 @@ export const EVENT_DATA = {
       accentColor: "#A020F0",
     },
     {
+      id: "vip",
       name: "VIP PRIME TABLE",
-      price: "₹20000",
+      price: "₹30000",
       status: "AVAILABLE",
       features: [
         "Limited for 4 people",
         "Elevated Area",
         "Unlimited Fooding",
-        "2 Bottle Premium Whisky",
+        "2 Bottles Premium Whisky",
         "4 Bottles Beer",
         "Unlimited Energy Drink",
       ],
       accentColor: "#FFE5B4",
     },
     {
+      id: "vvip",
       name: "VVIP ROYAL TABLE",
-      price: "₹30000",
+      price: "₹40000",
       status: "AVAILABLE",
       features: [
         "Limited for 6 people",
@@ -64,7 +69,7 @@ export const EVENT_DATA = {
         "Unlimited Energy Drink",
       ],
       accentColor: "#00FFFF",
-    }
+    },
   ],
 };
 
