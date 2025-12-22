@@ -31,7 +31,7 @@ export async function POST(req: Request) {
 
   if (order.status !== 'PAID') {
     return NextResponse.json(
-      { error: 'Payment not completed' },
+      { error: 'Payment not completed or refunded' },
       { status: 400 }
     );
   }
