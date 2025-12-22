@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { OrderStatus } from '@prisma/client';
 
 const EXPIRY_MS = 10 * 60 * 1000; // 10 minutes
 
@@ -30,7 +31,7 @@ export async function GET(
 
   // ⏳ Soft guard — expire unpaid orders
   if (
-    order.status === 'PENDING' &&
+    order.status === OrderStatus.PENDING &&
     Date.now() - order.createdAt.getTime() > EXPIRY_MS
   ) {
     return NextResponse.json(

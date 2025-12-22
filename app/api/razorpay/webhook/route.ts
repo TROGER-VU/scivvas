@@ -3,6 +3,7 @@ import crypto from 'crypto';
 import QRCode from 'qrcode';
 import { prisma } from '@/lib/prisma';
 import nodemailer from 'nodemailer';
+import { OrderStatus } from '@prisma/client';
 
 export const runtime = 'nodejs'; // REQUIRED for crypto
 
@@ -66,7 +67,7 @@ export async function POST(req: Request) {
     });
 
     // Idempotency guard
-    if (!order || order.status === 'PAID') {
+    if (!order || order.status === OrderStatus.PAID) {
       return NextResponse.json({ received: true });
     }
 
@@ -89,7 +90,7 @@ export async function POST(req: Request) {
       const ticketSummary = order.tickets
         .map(
           (t: OrderTicket) =>
-            `<li>${t.qty} × ${t.tierId.toUpperCase()}</li>`
+            `<li>${t.qty} x ${t.tierId.toUpperCase()}</li>`
         )
         .join('');
 
@@ -137,7 +138,7 @@ export async function POST(req: Request) {
       where: { razorpayOrderId }
     });
 
-    if (!order || order.status === 'REFUNDED') {
+    if (!order || order.status === OrderStatus.REFUNDED) {
       return NextResponse.json({ received: true });
     }
 
