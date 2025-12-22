@@ -17,8 +17,8 @@ const EVENT_DATA = {
         { name: "SILVER", price: "₹1199", status: "SELLING FAST", features: ["₹200 Food Voucher", "Silver Stand Access"], accentColor: '#C0C0C0' },
         { name: "GOLD", price: "₹2199", status: "SELLING FAST", features: ["₹200 Food Voucher", "Gold Stand Access"], accentColor: '#FFD700' },
         { name: "FANPIT", price: "₹4999", status: "SELLING FAST", features: ["₹200 Food Voucher", "Fanpit Stand Access"], accentColor: '#A020F0', },
-        { name: "VIP TABLE", price: "₹19999", status: "AVAILABLE", features: ["Limited for 4 people", "Elevated Area", "Unlimited Fooding", "2 Bottle Premium Whisky", "4 Bottles Beer", "Unlimited Energy Drink"], accentColor: '#FFE5B4' },
-        { name: "VVIP TABLE", price: "₹29999", status: "AVAILABLE", features: ["Limited for 6 people", "Elevated Area", "Unlimited Fooding", "2 Bottles Premium Whisky", "6 Bottles Beer", "Unlimited Energy Drink"], accentColor: '#00FFFF' },
+        { name: "VIP TABLE", price: "₹29999", status: "AVAILABLE", features: ["Limited for 4 people", "Elevated Area", "Unlimited Fooding", "2 Bottle Premium Whisky", "4 Bottles Beer", "Unlimited Energy Drink"], accentColor: '#FFE5B4' },
+        { name: "VVIP TABLE", price: "₹39999", status: "AVAILABLE", features: ["Limited for 6 people", "Elevated Area", "Unlimited Fooding", "2 Bottles Premium Whisky", "6 Bottles Beer", "Unlimited Energy Drink"], accentColor: '#00FFFF' },
     ]
 };
 
