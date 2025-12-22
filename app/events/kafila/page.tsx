@@ -4,10 +4,8 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Link from "next/link";
 import React, { useState } from "react";
-import { Plus, Minus } from "lucide-react";
-import { useRouter } from "next/navigation";
 
-export const EVENT_DATA = {
+const EVENT_DATA = {
   title: "BAN KAFILA",
   slug: "kafila",
   date: "2026-01-03T00:00:00",
@@ -19,48 +17,43 @@ export const EVENT_DATA = {
   lineup: ["MASOOM SHARMA"],
   tickets: [
     {
-      id: "silver",
       name: "SILVER",
-      price: "₹1",
+      price: "₹1200",
       status: "SELLING FAST",
       features: ["₹200 Food Voucher", "Silver Stand Access"],
       accentColor: "#C0C0C0",
     },
     {
-      id: "gold",
       name: "GOLD",
-      price: "₹1",
+      price: "₹2200",
       status: "SELLING FAST",
       features: ["₹200 Food Voucher", "Gold Stand Access"],
       accentColor: "#FFD700",
     },
     {
-      id: "fanpit",
       name: "FANPIT",
-      price: "₹10",
+      price: "₹5000",
       status: "SELLING FAST",
       features: ["₹200 Food Voucher", "Fanpit Stand Access"],
       accentColor: "#A020F0",
     },
     {
-      id: "vip",
-      name: "VIP TABLE",
-      price: "₹10",
+      name: "VIP PRIME TABLE",
+      price: "₹20000",
       status: "AVAILABLE",
       features: [
         "Limited for 4 people",
         "Elevated Area",
         "Unlimited Fooding",
-        "2 Bottles Premium Whisky",
+        "2 Bottle Premium Whisky",
         "4 Bottles Beer",
         "Unlimited Energy Drink",
       ],
       accentColor: "#FFE5B4",
     },
     {
-      id: "vvip",
-      name: "VVIP TABLE",
-      price: "₹100",
+      name: "VVIP ROYAL TABLE",
+      price: "₹30000",
       status: "AVAILABLE",
       features: [
         "Limited for 6 people",
@@ -71,7 +64,7 @@ export const EVENT_DATA = {
         "Unlimited Energy Drink",
       ],
       accentColor: "#00FFFF",
-    },
+    }
   ],
 };
 
@@ -123,8 +116,6 @@ export const EVENT_DATA = {
 //     );
 // };
 
-type Cart = Record<string, number>;
-
 // 2. TICKET CARD COMPONENT
 interface TicketTier {
   name: string;
@@ -134,15 +125,7 @@ interface TicketTier {
   accentColor: string;
 }
 
-const TicketCard = ({
-  tier,
-  qty,
-  setQty,
-}: {
-  tier: TicketTier;
-  qty: number;
-  setQty: (qty: number) => void;
-}) => {
+const TicketCard = ({ tier }: { tier: TicketTier }) => {
   const [isHovered, setIsHovered] = useState(false);
   // const PRIMARY_COLOR = '#FF9FFC';
   const isSoldOut = tier.status === "SOLD OUT";
@@ -243,31 +226,126 @@ const TicketCard = ({
       </ul>
 
       {/* CTA */}
-      {!isSoldOut && (
-        <div className="flex items-center justify-between bg-white/5 p-3 rounded-lg">
-          <span className="text-xs uppercase text-gray-400">Quantity</span>
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => setQty(Math.max(0, qty - 1))}
-              className="w-15 h-8 flex items-center justify-center rounded-full hover:bg-white/10"
-            >
-              <Minus />
-            </button>
-
-            <span className="font-mono text-xl w-4 text-center">{qty}</span>
-
-            <button
-              onClick={() => setQty(Math.min(10, qty + 1))}
-              className="w-15 h-8 flex items-center justify-center rounded-full hover:bg-white/10"
-            >
-              <Plus />
-            </button>
-          </div>
-        </div>
-      )}
+      <Link
+        href={"https://link.district.in/DSTRKT/enqwgwzr"}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <button
+          disabled={isSoldOut}
+          style={{
+            marginTop: "28px",
+            width: "100%",
+            padding: "16px",
+            fontWeight: 800,
+            letterSpacing: "1px",
+            textTransform: "uppercase",
+            borderRadius: "12px",
+            background: isSoldOut
+              ? "#222"
+              : isHovered
+              ? tier.accentColor
+              : "transparent",
+            color: isHovered && !isSoldOut ? "#000" : "white",
+            border: `1px solid ${isSoldOut ? "#333" : tier.accentColor}`,
+            // cursor: isSoldOut ? 'not-allowed' : '',
+            transition: "all 0.25s ease",
+            boxShadow:
+              isHovered && !isSoldOut
+                ? `0 0 20px ${tier.accentColor}80`
+                : "none",
+          }}
+        >
+          {isSoldOut ? "Unavailable" : "Select Access"}
+        </button>
+      </Link>
     </div>
   );
 };
+
+const SeatingLayout = () => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      {/* Preview */}
+      <div style={{ textAlign: "center", marginBottom: "60px" }}>
+        <h3
+          style={{
+            fontFamily: "var(--font-heading)",
+            fontSize: "2.2rem",
+            textTransform: "uppercase",
+            marginBottom: "10px",
+          }}
+        >
+          Seating Layout
+        </h3>
+
+        <p
+          style={{
+            color: "#777",
+            fontFamily: "monospace",
+            marginBottom: "25px",
+          }}
+        >
+          Tap to zoom & understand your access zone
+        </p>
+
+        <div
+          onClick={() => setOpen(true)}
+          style={{
+            cursor: "zoom-in",
+            borderRadius: "16px",
+            overflow: "hidden",
+            border: "1px solid #222",
+            maxWidth: "900px",
+            margin: "0 auto",
+            boxShadow: "0 20px 60px rgba(0,0,0,0.6)",
+          }}
+        >
+          <img
+            src="/stage.jpeg"
+            alt="Event Seating Layout"
+            style={{
+              width: "100%",
+              height: "auto",
+              display: "block",
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Fullscreen Modal */}
+      {open && (
+        <div
+          onClick={() => setOpen(false)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0,0,0,0.9)",
+            zIndex: 1000,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "40px",
+            cursor: "zoom-out",
+          }}
+        >
+          <img
+            src="/stage.jpeg"
+            alt="Seating Layout Full View"
+            style={{
+              maxWidth: "100%",
+              maxHeight: "100%",
+              borderRadius: "12px",
+            }}
+          />
+        </div>
+      )}
+    </>
+  );
+};
+
 
 // --- MAIN PAGE COMPONENT ---
 
@@ -275,31 +353,6 @@ export default function EventPage() {
   // In a real app, use params.slug to fetch data
   // const event = fetchEvent(params.slug);
   const event = EVENT_DATA;
-  const router = useRouter();
-  const [cart, setCart] = useState<Cart>({});
-  const updateQty = (tierId: string, qty: number) => {
-    setCart((prev) => {
-      const updated = { ...prev };
-      if (qty <= 0) delete updated[tierId];
-      else updated[tierId] = qty;
-      return updated;
-    });
-  };
-
-  const proceedToCheckout = () => {
-    const cartItems = Object.entries(cart).map(([tierId, qty]) => ({
-      tierId,
-      qty,
-    }));
-
-    if (cartItems.length === 0) return;
-
-    router.push(
-      `/checkout?cart=${encodeURIComponent(JSON.stringify(cartItems))}`
-    );
-  };
-
-  const totalItems = Object.values(cart).reduce((a, b) => a + b, 0);
 
   // --- STYLES ---
   // const PRIMARY_COLOR = '#FF9FFC';
@@ -365,81 +418,81 @@ export default function EventPage() {
       <Header />
       {/* <section style={HERO_STYLE}> */}
       {/* <div style={BACKGROUND_IMG} />
-                <div style={GRADIENT_OVERLAY} />
-                
-                <h2 style={{ letterSpacing: '5px', fontSize: '1rem', color: 'white', textTransform: 'uppercase', marginBottom: '20px' }}>
-                    Upcoming Event
-                </h2>
-                
-                <h1 style={{ 
-                    fontFamily: 'var(--font-heading)', 
-                    fontSize: 'clamp(3rem, 8vw, 6rem)', 
-                    fontWeight: 900, 
-                    lineHeight: 0.9,
-                    color: '#ff2929',
-                    textTransform: 'uppercase',
-                    marginBottom: '10px'
-                }}>
-                    {event.title}
-                </h1>
+               <div style={GRADIENT_OVERLAY} />
+               
+               <h2 style={{ letterSpacing: '5px', fontSize: '1rem', color: 'white', textTransform: 'uppercase', marginBottom: '20px' }}>
+                   Upcoming Event
+               </h2>
+               
+               <h1 style={{ 
+                   fontFamily: 'var(--font-heading)', 
+                   fontSize: 'clamp(3rem, 8vw, 6rem)', 
+                   fontWeight: 900, 
+                   lineHeight: 0.9,
+                   color: '#ff2929',
+                   textTransform: 'uppercase',
+                   marginBottom: '10px'
+               }}>
+                   {event.title}
+               </h1>
 
-                <p style={{ fontFamily: 'monospace', fontSize: '1.2rem', color: '#ccc' }}>
-                    {formattedDate}
-                </p> */}
+               <p style={{ fontFamily: 'monospace', fontSize: '1.2rem', color: '#ccc' }}>
+                   {formattedDate}
+               </p> */}
 
       {/* Countdown Timer */}
       {/* <Countdown targetDate={event.date} /> */}
 
       {/* Scroll Down Hint */}
       {/* <div style={{ position: 'absolute', bottom: '40px', animation: 'bounce 2s infinite' }}>
-                    <span style={{ color: '#555', fontSize: '0.8rem' }}>SCROLL TO ACQUIRE ACCESS</span>
-                </div> */}
+                   <span style={{ color: '#555', fontSize: '0.8rem' }}>SCROLL TO ACQUIRE ACCESS</span>
+               </div> */}
       {/* </section> */}
 
       {/* --- INFO & LINEUP --- */}
       {/* <section style={SECTION_STYLE}>
-                <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', gap: '60px' }}> */}
+               <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', gap: '60px' }}> */}
 
       {/* Event Description */}
       {/* <div style={{ flex: '1 1 400px' }}>
-                        <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-heading)', marginBottom: '20px', color: 'white' }}>
-                            THE TRANSMISSION
-                        </h3>
-                        <p style={{ fontSize: '1.1rem', lineHeight: 1.6, color: '#aaa', marginBottom: '30px' }}>
-                            {event.description}
-                        </p>
-                        <div style={{ fontFamily: 'monospace', color: PRIMARY_COLOR, borderLeft: `2px solid ${PRIMARY_COLOR}`, paddingLeft: '20px', fontSize: '1.2rem' }}>
-                            <div style={{ marginBottom: '10px' }}>LOCATION: {event.location}</div>
-                            <div>DOORS: 18:00 - 23:00</div>
-                        </div>
-                    </div> */}
+                       <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-heading)', marginBottom: '20px', color: 'white' }}>
+                           THE TRANSMISSION
+                       </h3>
+                       <p style={{ fontSize: '1.1rem', lineHeight: 1.6, color: '#aaa', marginBottom: '30px' }}>
+                           {event.description}
+                       </p>
+                       <div style={{ fontFamily: 'monospace', color: PRIMARY_COLOR, borderLeft: `2px solid ${PRIMARY_COLOR}`, paddingLeft: '20px', fontSize: '1.2rem' }}>
+                           <div style={{ marginBottom: '10px' }}>LOCATION: {event.location}</div>
+                           <div>DOORS: 18:00 - 23:00</div>
+                       </div>
+                   </div> */}
 
       {/* Lineup List */}
       {/* <div style={{ flex: '1 1 300px' }}>
-                        <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-heading)', marginBottom: '20px', color: 'white', textAlign: 'right' }}>
-                            LINEUP
-                        </h3>
-                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '15px' }}>
-                            {event.lineup.map((artist, i) => (
-                                <div key={i} style={{ 
-                                    fontSize: i === 0 ? '2.5rem' : '1.5rem', // Headliner is bigger
-                                    fontWeight: 900, 
-                                    color: i === 0 ? 'white' : '#666',
-                                    textTransform: 'uppercase',
-                                    // cursor: 'pointer',
-                                    transition: 'color 0.2s',
-                                    fontFamily: 'var(--font-heading)'
-                                }}
-                                onMouseEnter={(e) => e.currentTarget.style.color = '#ff2929'}
-                                onMouseLeave={(e) => e.currentTarget.style.color = i === 0 ? 'white' : '#666'}
-                                >
-                                    {artist}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </section> */}
+                       <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-heading)', marginBottom: '20px', color: 'white', textAlign: 'right' }}>
+                           LINEUP
+                       </h3>
+                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '15px' }}>
+                           {event.lineup.map((artist, i) => (
+                               <div key={i} style={{ 
+                                   fontSize: i === 0 ? '2.5rem' : '1.5rem', // Headliner is bigger
+                                   fontWeight: 900, 
+                                   color: i === 0 ? 'white' : '#666',
+                                   textTransform: 'uppercase',
+                                   // cursor: 'pointer',
+                                   transition: 'color 0.2s',
+                                   fontFamily: 'var(--font-heading)'
+                               }}
+                               onMouseEnter={(e) => e.currentTarget.style.color = '#ff2929'}
+                               onMouseLeave={(e) => e.currentTarget.style.color = i === 0 ? 'white' : '#666'}
+                               >
+                                   {artist}
+                               </div>
+                           ))}
+                       </div>
+                   </div>
+               </div>
+           </section> */}
 
       {/* --- TICKETS SECTION --- */}
       <section
@@ -473,49 +526,15 @@ export default function EventPage() {
           </p>
 
           <div style={GRID_STYLE}>
-            {event.tickets.map((tier) => (
-              <TicketCard
-                key={tier.id}
-                tier={tier}
-                qty={cart[tier.id] || 0}
-                setQty={(q) => updateQty(tier.id, q)}
-              />
+            {event.tickets.map((tier, index) => (
+              <TicketCard key={index} tier={tier} />
             ))}
           </div>
         </div>
       </section>
-      {totalItems > 0 && (
-        <div
-          className="fixed left-1/2 -translate-x-1/2 bottom-6 z-50
-                          w-[95%] max-w-4xl
-                          backdrop-blur-xl bg-black/70
-                          border border-white/10
-                          rounded-2xl px-6 py-4
-                          flex items-center justify-between
-                          shadow-[0_10px_40px_rgba(0,0,0,0.8)]"
-        >
-          <div className="flex flex-col">
-            <span className="text-xs uppercase tracking-widest text-gray-400">
-              Tickets Selected
-            </span>
-            <span className="text-lg font-mono font-bold text-white">
-              {totalItems} ticket{totalItems > 1 ? "s" : ""}
-            </span>
-          </div>
 
-          <button
-            onClick={proceedToCheckout}
-            className="px-8 py-3 rounded-xl
-                            bg-[#FF9FFC] text-black
-                            font-black uppercase tracking-wider
-                            hover:scale-[1.03] active:scale-95
-                            transition-all shadow-lg"
-          >
-            Proceed to Checkout
-          </button>
-        </div>
-      )}
-
+      <SeatingLayout/>
+      
       <section style={{ ...SECTION_LOCATION_STYLE, backgroundColor: "#000" }}>
         <h2
           style={{
