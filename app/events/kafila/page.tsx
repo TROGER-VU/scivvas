@@ -182,7 +182,7 @@ const TicketCard = ({ tier }: { tier: TicketTier }) => {
 
       {/* CTA */}
       <Link 
-      href={'https://forms.gle/9LY6FjWpp1w7RRYQ6'} 
+      href={'https://link.district.in/DSTRKT/enqwgwzr'} 
       target="_blank"
           rel="noopener noreferrer">
         <button
