@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { OrderStatus } from '@prisma/client';
 
 type Body = {
   payload: string; // "ORDER:<uuid>"
@@ -30,7 +29,7 @@ export async function POST(req: Request) {
     );
   }
 
-  if (order.status !== OrderStatus.PAID) {
+  if (order.status !== 'PAID') {
     return NextResponse.json(
       { error: 'Payment not completed or refunded' },
       { status: 400 }
