@@ -1,25 +1,78 @@
-'use client';
-import EventMap from '@/components/EventMap';
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
-import Link from 'next/link';
-import React, { useState } from 'react';
+"use client";
+import EventMap from "@/components/EventMap";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import Link from "next/link";
+import React, { useState } from "react";
+import { Plus, Minus } from "lucide-react";
+import { useRouter } from "next/navigation";
 
-const EVENT_DATA = {
-    title: "BAN KAFILA",
-    slug: "kafila",
-    date: "2026-01-03T00:00:00",
-    location: "PAC Ground, Kanpur",
-    description: "A convergence of light and sound. The city's largest industrial techno gathering returns.",
-    coverImage: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1600&auto=format&fit=crop",
-    lineup: ["MASOOM SHARMA"],
-    tickets: [
-        { name: "SILVER", price: "₹1199", status: "SELLING FAST", features: ["₹200 Food Voucher", "Silver Stand Access"], accentColor: '#C0C0C0' },
-        { name: "GOLD", price: "₹2199", status: "SELLING FAST", features: ["₹200 Food Voucher", "Gold Stand Access"], accentColor: '#FFD700' },
-        { name: "FANPIT", price: "₹4999", status: "SELLING FAST", features: ["₹200 Food Voucher", "Fanpit Stand Access"], accentColor: '#A020F0', },
-        { name: "VIP TABLE", price: "₹29999", status: "AVAILABLE", features: ["Limited for 4 people", "Elevated Area", "Unlimited Fooding", "2 Bottle Premium Whisky", "4 Bottles Beer", "Unlimited Energy Drink"], accentColor: '#FFE5B4' },
-        { name: "VVIP TABLE", price: "₹39999", status: "AVAILABLE", features: ["Limited for 6 people", "Elevated Area", "Unlimited Fooding", "2 Bottles Premium Whisky", "6 Bottles Beer", "Unlimited Energy Drink"], accentColor: '#00FFFF' },
-    ]
+export const EVENT_DATA = {
+  title: "BAN KAFILA",
+  slug: "kafila",
+  date: "2026-01-03T00:00:00",
+  location: "PAC Ground, Kanpur",
+  description:
+    "A convergence of light and sound. The city's largest industrial techno gathering returns.",
+  coverImage:
+    "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1600&auto=format&fit=crop",
+  lineup: ["MASOOM SHARMA"],
+  tickets: [
+    {
+      id: "silver",
+      name: "SILVER",
+      price: "₹1",
+      status: "SELLING FAST",
+      features: ["₹200 Food Voucher", "Silver Stand Access"],
+      accentColor: "#C0C0C0",
+    },
+    {
+      id: "gold",
+      name: "GOLD",
+      price: "₹1",
+      status: "SELLING FAST",
+      features: ["₹200 Food Voucher", "Gold Stand Access"],
+      accentColor: "#FFD700",
+    },
+    {
+      id: "fanpit",
+      name: "FANPIT",
+      price: "₹10",
+      status: "SELLING FAST",
+      features: ["₹200 Food Voucher", "Fanpit Stand Access"],
+      accentColor: "#A020F0",
+    },
+    {
+      id: "vip",
+      name: "VIP TABLE",
+      price: "₹10",
+      status: "AVAILABLE",
+      features: [
+        "Limited for 4 people",
+        "Elevated Area",
+        "Unlimited Fooding",
+        "2 Bottles Premium Whisky",
+        "4 Bottles Beer",
+        "Unlimited Energy Drink",
+      ],
+      accentColor: "#FFE5B4",
+    },
+    {
+      id: "vvip",
+      name: "VVIP TABLE",
+      price: "₹100",
+      status: "AVAILABLE",
+      features: [
+        "Limited for 6 people",
+        "Elevated Area",
+        "Unlimited Fooding",
+        "2 Bottles Premium Whisky",
+        "6 Bottles Beer",
+        "Unlimited Energy Drink",
+      ],
+      accentColor: "#00FFFF",
+    },
+  ],
 };
 
 // --- COMPONENTS ---
@@ -27,7 +80,6 @@ const EVENT_DATA = {
 // 1. COUNTDOWN TIMER COMPONENT
 // const Countdown = ({ targetDate }: { targetDate: string }) => {
 //     const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-    
 
 //     useEffect(() => {
 //         const interval = setInterval(() => {
@@ -71,48 +123,58 @@ const EVENT_DATA = {
 //     );
 // };
 
+type Cart = Record<string, number>;
+
 // 2. TICKET CARD COMPONENT
 interface TicketTier {
-    name: string;
-    price: string;
-    status: string;
-    features: string[];
-    accentColor: string;
+  name: string;
+  price: string;
+  status: string;
+  features: string[];
+  accentColor: string;
 }
 
-const TicketCard = ({ tier }: { tier: TicketTier }) => {
+const TicketCard = ({
+  tier,
+  qty,
+  setQty,
+}: {
+  tier: TicketTier;
+  qty: number;
+  setQty: (qty: number) => void;
+}) => {
   const [isHovered, setIsHovered] = useState(false);
   // const PRIMARY_COLOR = '#FF9FFC';
-  const isSoldOut = tier.status === 'SOLD OUT';
+  const isSoldOut = tier.status === "SOLD OUT";
 
   return (
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
-        position: 'relative',
-        padding: '32px',
-        borderRadius: '16px',
-        background: 'linear-gradient(180deg, #0c0c0c, #050505)',
-        border: `1px solid ${isHovered ? tier.accentColor : '#1f1f1f'}`,
+        position: "relative",
+        padding: "32px",
+        borderRadius: "16px",
+        background: "linear-gradient(180deg, #0c0c0c, #050505)",
+        border: `1px solid ${isHovered ? tier.accentColor : "#1f1f1f"}`,
         boxShadow: isHovered
           ? `0 0 30px ${tier.accentColor}40`
-          : '0 10px 30px rgba(0,0,0,0.6)',
-        transform: isHovered ? 'translateY(-6px)' : 'translateY(0)',
-        transition: 'all 0.35s ease',
+          : "0 10px 30px rgba(0,0,0,0.6)",
+        transform: isHovered ? "translateY(-6px)" : "translateY(0)",
+        transition: "all 0.35s ease",
         opacity: isSoldOut ? 0.5 : 1,
         // cursor: isSoldOut ? 'not-allowed' : 'pointer',
-        overflow: 'hidden',
+        overflow: "hidden",
       }}
     >
       {/* Accent Top Bar */}
       <div
         style={{
-          position: 'absolute',
+          position: "absolute",
           top: 0,
           left: 0,
-          height: '4px',
-          width: '100%',
+          height: "4px",
+          width: "100%",
           background: tier.accentColor,
         }}
       />
@@ -120,16 +182,16 @@ const TicketCard = ({ tier }: { tier: TicketTier }) => {
       {/* Status Badge */}
       <div
         style={{
-          display: 'inline-block',
-          padding: '6px 12px',
-          fontSize: '0.7rem',
-          letterSpacing: '1px',
+          display: "inline-block",
+          padding: "6px 12px",
+          fontSize: "0.7rem",
+          letterSpacing: "1px",
           fontWeight: 700,
-          textTransform: 'uppercase',
-          color: isSoldOut ? '#ff2929' : tier.accentColor,
-          border: `1px solid ${isSoldOut ? '#ff2929' : tier.accentColor}`,
-          borderRadius: '999px',
-          marginBottom: '18px',
+          textTransform: "uppercase",
+          color: isSoldOut ? "#ff2929" : tier.accentColor,
+          border: `1px solid ${isSoldOut ? "#ff2929" : tier.accentColor}`,
+          borderRadius: "999px",
+          marginBottom: "18px",
         }}
       >
         {tier.status}
@@ -138,11 +200,11 @@ const TicketCard = ({ tier }: { tier: TicketTier }) => {
       {/* Title */}
       <h3
         style={{
-          fontSize: '2rem',
-          fontFamily: 'var(--font-heading)',
-          color: 'white',
-          marginBottom: '8px',
-          textTransform: 'uppercase',
+          fontSize: "2rem",
+          fontFamily: "var(--font-heading)",
+          color: "white",
+          marginBottom: "8px",
+          textTransform: "uppercase",
         }}
       >
         {tier.name}
@@ -151,27 +213,27 @@ const TicketCard = ({ tier }: { tier: TicketTier }) => {
       {/* Price */}
       <div
         style={{
-          fontSize: '2.8rem',
+          fontSize: "2.8rem",
           fontWeight: 900,
           color: tier.accentColor,
-          marginBottom: '24px',
+          marginBottom: "24px",
         }}
       >
         {tier.price}
       </div>
 
       {/* Features */}
-      <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+      <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
         {tier.features.map((feat, i) => (
           <li
             key={i}
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '10px',
-              fontSize: '0.95rem',
-              color: '#ccc',
-              marginBottom: '10px',
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              fontSize: "0.95rem",
+              color: "#ccc",
+              marginBottom: "10px",
             }}
           >
             <span style={{ color: tier.accentColor }}>✦</span>
@@ -181,40 +243,28 @@ const TicketCard = ({ tier }: { tier: TicketTier }) => {
       </ul>
 
       {/* CTA */}
-      <Link 
-      href={'https://link.district.in/DSTRKT/enqwgwzr'} 
-      target="_blank"
-          rel="noopener noreferrer">
-        <button
-          disabled={isSoldOut}
-          style={{
-            marginTop: '28px',
-            width: '100%',
-            padding: '16px',
-            fontWeight: 800,
-            letterSpacing: '1px',
-            textTransform: 'uppercase',
-            borderRadius: '12px',
-            background: isSoldOut
-              ? '#222'
-              : isHovered
-              ? tier.accentColor
-              : 'transparent',
-            color: isHovered && !isSoldOut ? '#000' : 'white',
-            border: `1px solid ${
-              isSoldOut ? '#333' : tier.accentColor
-            }`,
-            // cursor: isSoldOut ? 'not-allowed' : '',
-            transition: 'all 0.25s ease',
-            boxShadow:
-              isHovered && !isSoldOut
-                ? `0 0 20px ${tier.accentColor}80`
-                : 'none',
-          }}
-        >
-          {isSoldOut ? 'Unavailable' : 'Select Access'}
-        </button>
-      </Link>
+      {!isSoldOut && (
+        <div className="flex items-center justify-between bg-white/5 p-3 rounded-lg">
+          <span className="text-xs uppercase text-gray-400">Quantity</span>
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setQty(Math.max(0, qty - 1))}
+              className="w-15 h-8 flex items-center justify-center rounded-full hover:bg-white/10"
+            >
+              <Minus />
+            </button>
+
+            <span className="font-mono text-xl w-4 text-center">{qty}</span>
+
+            <button
+              onClick={() => setQty(Math.min(10, qty + 1))}
+              className="w-15 h-8 flex items-center justify-center rounded-full hover:bg-white/10"
+            >
+              <Plus />
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -222,76 +272,99 @@ const TicketCard = ({ tier }: { tier: TicketTier }) => {
 // --- MAIN PAGE COMPONENT ---
 
 export default function EventPage() {
-    // In a real app, use params.slug to fetch data
-    // const event = fetchEvent(params.slug); 
-    const event = EVENT_DATA; 
+  // In a real app, use params.slug to fetch data
+  // const event = fetchEvent(params.slug);
+  const event = EVENT_DATA;
+  const router = useRouter();
+  const [cart, setCart] = useState<Cart>({});
+  const updateQty = (tierId: string, qty: number) => {
+    setCart((prev) => {
+      const updated = { ...prev };
+      if (qty <= 0) delete updated[tierId];
+      else updated[tierId] = qty;
+      return updated;
+    });
+  };
 
-    // --- STYLES ---
-    // const PRIMARY_COLOR = '#FF9FFC';
-    
-    // const HERO_STYLE: React.CSSProperties = {
-    //     minHeight: '100vh',
-    //     width: '100%',
-    //     position: 'relative',
-    //     display: 'flex',
-    //     flexDirection: 'column',
-    //     alignItems: 'center',
-    //     justifyContent: 'center',
-    //     textAlign: 'center',
-    //     padding: '20px',
-    //     overflow: 'hidden',
-    // };
+  const proceedToCheckout = () => {
+    const cartItems = Object.entries(cart).map(([tierId, qty]) => ({
+      tierId,
+      qty,
+    }));
 
-    // const BACKGROUND_IMG: React.CSSProperties = {
-    //     position: 'absolute',
-    //     top: 0, left: 0, width: '100%', height: '100%',
-    //     backgroundImage: `url(${event.coverImage})`,
-    //     backgroundSize: 'cover',
-    //     backgroundPosition: 'center',
-    //     zIndex: -2,
-    //     filter: 'grayscale(20%) brightness(0.8)', // Dark aesthetic
-    // };
+    if (cartItems.length === 0) return;
 
-    // const GRADIENT_OVERLAY: React.CSSProperties = {
-    //     position: 'absolute',
-    //     top: 0, left: 0, width: '100%', height: '100%',
-    //     background: 'linear-gradient(to bottom, rgba(0,0,0,0.3), #000)',
-    //     zIndex: -1
-    // };
+    router.push(
+      `/checkout?cart=${encodeURIComponent(JSON.stringify(cartItems))}`
+    );
+  };
 
-    const SECTION_STYLE: React.CSSProperties = {
-        padding: '100px 5%',
-        backgroundColor: 'black',
-        color: 'white'
-    };
+  const totalItems = Object.values(cart).reduce((a, b) => a + b, 0);
 
-    const SECTION_LOCATION_STYLE: React.CSSProperties = {
-        padding: '50px 5%',
-        backgroundColor: 'black',
-        color: 'white'
-    };
+  // --- STYLES ---
+  // const PRIMARY_COLOR = '#FF9FFC';
 
-    const GRID_STYLE: React.CSSProperties = {
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-        gap: '20px',
-        marginTop: '50px'
-    };
-    
+  // const HERO_STYLE: React.CSSProperties = {
+  //     minHeight: '100vh',
+  //     width: '100%',
+  //     position: 'relative',
+  //     display: 'flex',
+  //     flexDirection: 'column',
+  //     alignItems: 'center',
+  //     justifyContent: 'center',
+  //     textAlign: 'center',
+  //     padding: '20px',
+  //     overflow: 'hidden',
+  // };
 
-    // const formattedDate = new Intl.DateTimeFormat('en-US', {
-    //     weekday: 'long',
-    //     month: 'long',
-    //     day: 'numeric',
-    //     }).format(new Date(event.date));
+  // const BACKGROUND_IMG: React.CSSProperties = {
+  //     position: 'absolute',
+  //     top: 0, left: 0, width: '100%', height: '100%',
+  //     backgroundImage: `url(${event.coverImage})`,
+  //     backgroundSize: 'cover',
+  //     backgroundPosition: 'center',
+  //     zIndex: -2,
+  //     filter: 'grayscale(20%) brightness(0.8)', // Dark aesthetic
+  // };
 
+  // const GRADIENT_OVERLAY: React.CSSProperties = {
+  //     position: 'absolute',
+  //     top: 0, left: 0, width: '100%', height: '100%',
+  //     background: 'linear-gradient(to bottom, rgba(0,0,0,0.3), #000)',
+  //     zIndex: -1
+  // };
 
-    return (
-        <main>
-            {/* --- HERO SECTION --- */}
-            <Header/>
-            {/* <section style={HERO_STYLE}> */}
-                {/* <div style={BACKGROUND_IMG} />
+  const SECTION_STYLE: React.CSSProperties = {
+    padding: "100px 5%",
+    backgroundColor: "black",
+    color: "white",
+  };
+
+  const SECTION_LOCATION_STYLE: React.CSSProperties = {
+    padding: "50px 5%",
+    backgroundColor: "black",
+    color: "white",
+  };
+
+  const GRID_STYLE: React.CSSProperties = {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    gap: "20px",
+    marginTop: "50px",
+  };
+
+  // const formattedDate = new Intl.DateTimeFormat('en-US', {
+  //     weekday: 'long',
+  //     month: 'long',
+  //     day: 'numeric',
+  //     }).format(new Date(event.date));
+
+  return (
+    <main>
+      {/* --- HERO SECTION --- */}
+      <Header />
+      {/* <section style={HERO_STYLE}> */}
+      {/* <div style={BACKGROUND_IMG} />
                 <div style={GRADIENT_OVERLAY} />
                 
                 <h2 style={{ letterSpacing: '5px', fontSize: '1rem', color: 'white', textTransform: 'uppercase', marginBottom: '20px' }}>
@@ -314,23 +387,21 @@ export default function EventPage() {
                     {formattedDate}
                 </p> */}
 
-                {/* Countdown Timer */}
-                {/* <Countdown targetDate={event.date} /> */}
+      {/* Countdown Timer */}
+      {/* <Countdown targetDate={event.date} /> */}
 
-                {/* Scroll Down Hint */}
-                {/* <div style={{ position: 'absolute', bottom: '40px', animation: 'bounce 2s infinite' }}>
+      {/* Scroll Down Hint */}
+      {/* <div style={{ position: 'absolute', bottom: '40px', animation: 'bounce 2s infinite' }}>
                     <span style={{ color: '#555', fontSize: '0.8rem' }}>SCROLL TO ACQUIRE ACCESS</span>
                 </div> */}
-            {/* </section> */}
-            
+      {/* </section> */}
 
-
-            {/* --- INFO & LINEUP --- */}
-            {/* <section style={SECTION_STYLE}>
+      {/* --- INFO & LINEUP --- */}
+      {/* <section style={SECTION_STYLE}>
                 <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', gap: '60px' }}> */}
-                    
-                    {/* Event Description */}
-                    {/* <div style={{ flex: '1 1 400px' }}>
+
+      {/* Event Description */}
+      {/* <div style={{ flex: '1 1 400px' }}>
                         <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-heading)', marginBottom: '20px', color: 'white' }}>
                             THE TRANSMISSION
                         </h3>
@@ -343,8 +414,8 @@ export default function EventPage() {
                         </div>
                     </div> */}
 
-                    {/* Lineup List */}
-                    {/* <div style={{ flex: '1 1 300px' }}>
+      {/* Lineup List */}
+      {/* <div style={{ flex: '1 1 300px' }}>
                         <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-heading)', marginBottom: '20px', color: 'white', textAlign: 'right' }}>
                             LINEUP
                         </h3>
@@ -370,57 +441,109 @@ export default function EventPage() {
                 </div>
             </section> */}
 
-            {/* --- TICKETS SECTION --- */}
-            <section style={{ ...SECTION_STYLE, backgroundColor: '#050505', borderTop: '1px solid #222' }}>
-                <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-                    <h2 style={{ 
-                        textAlign: 'center', 
-                        fontSize: '3rem', 
-                        fontFamily: 'var(--font-heading)', 
-                        marginBottom: '10px',
-                        textTransform: 'uppercase'
-                    }}>
-                        Secure Access
-                    </h2>
-                    <p style={{ textAlign: 'center', color: '#666', marginBottom: '60px', fontFamily: 'monospace' }}>
-                        Capacity is strictly limited.
-                    </p>
+      {/* --- TICKETS SECTION --- */}
+      <section
+        style={{
+          ...SECTION_STYLE,
+          backgroundColor: "#050505",
+          borderTop: "1px solid #222",
+        }}
+      >
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <h2
+            style={{
+              textAlign: "center",
+              fontSize: "3rem",
+              fontFamily: "var(--font-heading)",
+              marginBottom: "10px",
+              textTransform: "uppercase",
+            }}
+          >
+            Secure Access
+          </h2>
+          <p
+            style={{
+              textAlign: "center",
+              color: "#666",
+              marginBottom: "60px",
+              fontFamily: "monospace",
+            }}
+          >
+            Capacity is strictly limited.
+          </p>
 
-                    <div style={GRID_STYLE}>
-                        {event.tickets.map((tier, index) => (
-                            <TicketCard key={index} tier={tier} />
-                        ))}
-                    </div>
-                </div>
-            </section>
-            <section style={{ ...SECTION_LOCATION_STYLE, backgroundColor: '#000' }}>
-            <h2
-              style={{
-                textAlign: 'center',
-                fontSize: '2.5rem',
-                fontFamily: 'var(--font-heading)',
-                marginBottom: '10px',
-                textTransform: 'uppercase',
-              }}
-            >
-              Venue Location
-            </h2>
+          <div style={GRID_STYLE}>
+            {event.tickets.map((tier) => (
+              <TicketCard
+                key={tier.id}
+                tier={tier}
+                qty={cart[tier.id] || 0}
+                setQty={(q) => updateQty(tier.id, q)}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+      {totalItems > 0 && (
+        <div
+          className="fixed left-1/2 -translate-x-1/2 bottom-6 z-50
+                          w-[95%] max-w-4xl
+                          backdrop-blur-xl bg-black/70
+                          border border-white/10
+                          rounded-2xl px-6 py-4
+                          flex items-center justify-between
+                          shadow-[0_10px_40px_rgba(0,0,0,0.8)]"
+        >
+          <div className="flex flex-col">
+            <span className="text-xs uppercase tracking-widest text-gray-400">
+              Tickets Selected
+            </span>
+            <span className="text-lg font-mono font-bold text-white">
+              {totalItems} ticket{totalItems > 1 ? "s" : ""}
+            </span>
+          </div>
 
-            <p
-              style={{
-                textAlign: 'center',
-                color: '#666',
-                marginBottom: '10px',
-                fontFamily: 'monospace',
-                fontSize: '2rem'
-              }}
-            >
-              PAC Ground, Kanpur
-            </p>
+          <button
+            onClick={proceedToCheckout}
+            className="px-8 py-3 rounded-xl
+                            bg-[#FF9FFC] text-black
+                            font-black uppercase tracking-wider
+                            hover:scale-[1.03] active:scale-95
+                            transition-all shadow-lg"
+          >
+            Proceed to Checkout
+          </button>
+        </div>
+      )}
 
-            <EventMap />
-          </section>
-            <Footer/>
-        </main>
-    );
+      <section style={{ ...SECTION_LOCATION_STYLE, backgroundColor: "#000" }}>
+        <h2
+          style={{
+            textAlign: "center",
+            fontSize: "2.5rem",
+            fontFamily: "var(--font-heading)",
+            marginBottom: "10px",
+            textTransform: "uppercase",
+          }}
+        >
+          Venue Location
+        </h2>
+
+        <p
+          style={{
+            textAlign: "center",
+            color: "#666",
+            marginBottom: "10px",
+            fontFamily: "monospace",
+            fontSize: "2rem",
+          }}
+        >
+          PAC Ground, Kanpur
+        </p>
+
+        <EventMap />
+      </section>
+      <Footer />
+    </main>
+  );
 }

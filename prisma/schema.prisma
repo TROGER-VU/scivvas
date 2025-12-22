@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url       = env("DATABASE_URL")
+}
+
+/* ===================== MODELS ===================== */
+
+model Order {
+  id               String        @id @default(uuid())
+  name             String
+  email            String
+  phone            String
+  amount           Float
+  status           OrderStatus
+  razorpayOrderId  String        @unique
+  used             Boolean       @default(false)
+  qrCode           String?
+
+  tickets          OrderTicket[]
+
+  createdAt        DateTime      @default(now())
+}
+
+model OrderTicket {
+  id       String  @id @default(uuid())
+  orderId String
+  tierId  String
+  qty     Int
+
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  REFUNDED
+}
