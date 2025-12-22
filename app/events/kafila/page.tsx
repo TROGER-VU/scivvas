@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Link from "next/link";
 import React, { useState } from "react";
 
-const EVENT_DATA = {
+export const EVENT_DATA = {
   title: "BAN KAFILA",
   slug: "kafila",
   date: "2026-01-03T00:00:00",
@@ -534,7 +534,7 @@ export default function EventPage() {
       </section>
 
       <SeatingLayout/>
-      
+
       <section style={{ ...SECTION_LOCATION_STYLE, backgroundColor: "#000" }}>
         <h2
           style={{
