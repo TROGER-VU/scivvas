@@ -21,7 +21,7 @@ export const EVENT_DATA = {
     {
       id: "silver",
       name: "SILVER",
-      price: "₹1",
+      price: "₹1200",
       status: "SELLING FAST",
       features: ["₹200 Food Voucher", "Silver Stand Access"],
       accentColor: "#C0C0C0",
@@ -29,7 +29,7 @@ export const EVENT_DATA = {
     {
       id: "gold",
       name: "GOLD",
-      price: "₹1",
+      price: "₹2200",
       status: "SELLING FAST",
       features: ["₹200 Food Voucher", "Gold Stand Access"],
       accentColor: "#FFD700",
@@ -37,7 +37,7 @@ export const EVENT_DATA = {
     {
       id: "fanpit",
       name: "FANPIT",
-      price: "₹10",
+      price: "₹5000",
       status: "SELLING FAST",
       features: ["₹200 Food Voucher", "Fanpit Stand Access"],
       accentColor: "#A020F0",
@@ -45,7 +45,7 @@ export const EVENT_DATA = {
     {
       id: "vip",
       name: "VIP PRIME TABLE",
-      price: "₹10",
+      price: "₹30000",
       status: "AVAILABLE",
       features: [
         "Limited for 4 people",
@@ -60,7 +60,7 @@ export const EVENT_DATA = {
     {
       id: "vvip",
       name: "VVIP ROYAL TABLE",
-      price: "₹10",
+      price: "₹40000",
       status: "AVAILABLE",
       features: [
         "Limited for 6 people",
