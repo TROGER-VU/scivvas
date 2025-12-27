@@ -19,10 +19,10 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Scivvas Entertainment",
-  description: "Scivvas Entertainment Pvt. Ltd.",
-  icons: [
-    { rel: 'icon', url: '/logo.png', type: 'image/x-icon' }
-  ]
+  description: "At Scivvas Entertainment Pvt. Ltd., events become environments. We craft immersive atmospheres where every detail, every beam of light, and every shifting wavelength of sound is curated to perfection.",
+  icons: {
+    icon: '/logo.png',
+  }
 };
 
 export default function RootLayout({
@@ -32,10 +32,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${rajdhani.variable} ${inter.variable} h-full`}>
-      <head>
-        <link rel="icon" href="/logo.png" type="image/x-icon"/>
-        <meta name="description" content="At Scivvas Entertainment Pvt. Ltd., events become environments. We craft immersive atmospheres where every detail, every beam of light, and every shifting wavelength of sound is curated to perfection."/>
-      </head>
       <body
         className={`bg-black text-white h-full antialiased`}
       >
