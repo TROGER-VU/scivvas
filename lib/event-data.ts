@@ -5,10 +5,10 @@ export const EVENT_DATA = {
   date: "2026-01-03T00:00:00",
   location: "PAC Ground, Kanpur",
   tickets: [
-    { id: "silver", name: "SILVER", price: "₹1200" },
-    { id: "gold", name: "GOLD", price: "₹2200" },
-    { id: "fanpit", name: "FANPIT", price: "₹5000" },
-    { id: "vip", name: "VIP PRIME TABLE", price: "₹30000" },
-    { id: "vvip", name: "VVIP ROYAL TABLE", price: "₹40000" }
+    { id: "silver", name: "SILVER", price: "₹999" },
+    { id: "gold", name: "GOLD", price: "₹2199" },
+    { id: "fanpit", name: "FANPIT", price: "₹4999" },
+    { id: "vip", name: "VIP PRIME TABLE", price: "₹14999" },
+    { id: "vvip", name: "VVIP ROYAL TABLE", price: "₹24999" }
   ]
 };

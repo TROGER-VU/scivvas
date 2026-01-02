@@ -8,7 +8,7 @@ import WebsiteLoader from "@/components/WebsiteLoader";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const NEXT_EVENT_DATE = "2026-01-03T00:00:00";
+  const NEXT_EVENT_DATE = "2026-01-17T00:00:00";
   const EVENT_NAME = "Ban Kafila ";
 
   return (
