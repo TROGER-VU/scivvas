@@ -9,7 +9,7 @@ const MOCK_EVENT_DATA = [
   { 
     id: 1, 
     status: 'UPCOMING', 
-    date: '2026-01-03', 
+    date: '2026-01-17', 
     title: 'BAN Kafila',
     slug: 'kafila', 
     location: 'PAC Ground, Kanpur', 

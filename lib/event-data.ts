@@ -2,7 +2,7 @@
 export const EVENT_DATA = {
   title: "BAN KAFILA",
   slug: "kafila",
-  date: "2026-01-03T00:00:00",
+  date: "2026-01-17T00:00:00",
   location: "PAC Ground, Kanpur",
   tickets: [
     { id: "silver", name: "SILVER", price: "₹999" },
