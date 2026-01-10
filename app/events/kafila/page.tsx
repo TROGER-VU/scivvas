@@ -45,7 +45,7 @@ export const EVENT_DATA = {
     {
       id: "vip",
       name: "VIP PRIME TABLE",
-      price: "₹14999",
+      price: "₹99999",
       status: "AVAILABLE",
       features: [
         "Limited for 4 people",
@@ -60,7 +60,7 @@ export const EVENT_DATA = {
     {
       id: "vvip",
       name: "VVIP ROYAL TABLE",
-      price: "₹24999",
+      price: "₹199999",
       status: "AVAILABLE",
       features: [
         "Limited for 6 people",
