@@ -205,12 +205,13 @@ const EventsSection: React.FC = () => {
               {event.title}
             </h3>
             <p style={{ color: '#ccc', margin: '6px 0', fontSize: '0.85rem' }}>
-              {formatDate(event.date)} | {event.location}
+              TBD | {event.location}
+              {/* {formatDate(event.date)} | {event.location} */}
             </p>
             <p style={{ color: '#999', lineHeight: 1.6 }}>
               {event.description}
             </p>
-            <Link href={'/events/kafila'}>
+            {/* <Link href={'/events/kafila'}>
             <button
                 style={BUTTON_STYLE}
                 // Inline pseudo-classes for a simple hover effect since we are using inline styles
@@ -220,7 +221,7 @@ const EventsSection: React.FC = () => {
             >
                 GET TICKETS
             </button>
-            </Link>
+            </Link> */}
           </div>
         </div>
       ))}

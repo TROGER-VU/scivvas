@@ -51,33 +51,41 @@ interface CountdownProps {
 const Countdown: React.FC<CountdownProps> = ({ targetDate, eventName }) => {
     const [timeLeft, setTimeLeft] = useState(0);
 
+    // Replace your existing useEffect with this:
     useEffect(() => {
         const targetTime = new Date(targetDate).getTime();
 
+        // 1. Define the logic, but don't access 'interval' inside here
         const calculateTimeLeft = () => {
             const now = new Date().getTime();
             const distance = targetTime - now;
 
-            // Stop the countdown if the target time has passed
             if (distance < 0) {
                 setTimeLeft(0);
-                clearInterval(interval);
-                return;
+                return true; // Return true to signal the timer is finished
             }
 
             setTimeLeft(distance);
+            return false; // Return false to signal continue
         };
 
-        // Calculate immediately on mount
-        calculateTimeLeft();
-        
-        // Update every second
-        const interval = setInterval(calculateTimeLeft, 1000);
+        // 2. Run immediately to set initial state
+        const isFinished = calculateTimeLeft();
+
+        // 3. If the time is already passed, don't even start the interval
+        if (isFinished) return;
+
+        // 4. Start the interval
+        const interval = setInterval(() => {
+            const shouldStop = calculateTimeLeft();
+            if (shouldStop) {
+                clearInterval(interval);
+            }
+        }, 1000);
 
         // Cleanup on unmount
         return () => clearInterval(interval);
     }, [targetDate]);
-
     // Conversion function: milliseconds to days, hours, minutes, seconds
     const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
     const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -98,7 +106,7 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate, eventName }) => {
                 // Optional: A little shadow to separate from background
                 textShadow: '0 2px 5px rgba(0, 0, 0, 0.5)'
             }}>
-                {isFinished ? 'The Show is Live!' : `Upcoming Event: ${eventName}`}
+                {isFinished ? 'The Show Will Be Live Soon!' : `Upcoming Event: ${eventName}`}
             </h2>
 
             {/* Countdown Grid/Flex */}
@@ -108,7 +116,7 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate, eventName }) => {
                 gap: '20px' 
             }}>
                 {isFinished ? (
-                    <div style={{ fontSize: '2rem', color: '#ff2929' }}>GET READY TO PARTY!</div>
+                    <div style={{ fontSize: '2rem', color: '#ff2929' }}>BE READY TO PARTY!</div>
                 ) : (
                     <>
                         <TimeSegment value={days} label="Days" />

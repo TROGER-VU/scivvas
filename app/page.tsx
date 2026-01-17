@@ -111,8 +111,8 @@ export default function Home() {
 
           <div style={{ display: "flex", justifyContent: "center" }}>
             <SwipeButton
-              text="SWIPE FOR TICKETS"
-              destination="/events/kafila" // Where it goes after swipe
+              text="SWIPE TO KNOW MORE"
+              destination="/events" // Where it goes after swipe
               mainColor="#990000" // Neon Pink
             />
           </div>
