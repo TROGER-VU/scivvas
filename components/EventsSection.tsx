@@ -9,13 +9,14 @@ const MOCK_EVENT_DATA = [
   { 
     id: 1, 
     status: 'UPCOMING', 
-    date: '2026-01-17', 
-    title: 'BAN Kafila',
-    slug: 'kafila', 
+    date: '2026-02-08', 
+    title: 'Gulabi & Gabru Night',
+    slug: 'gabru', 
     location: 'PAC Ground, Kanpur', 
-    img: 'url("/kafila.jpeg")',
+    img: 'url("/gabru.jpeg")',
     description:
-      <>Kanpur get ready for the biggest concert of Masoom Sharma, and do you know who&apos;s hosting this concert <br/>SCIVVAS ENTERTAINMENT</>
+      <>SCIVVAS Entertainment & Food Chariot Crew proudly present an electrifying musical evening that blends glamour, energy, and pure desi swag — GULABI & GABRU NIGHT. <br/>
+      Get ready for an unforgettable night as some of the most loved names in Punjabi, Haryanvi & Indie music come together on one massive stage.</>
   },
   { 
     id: 2, 
@@ -205,13 +206,13 @@ const EventsSection: React.FC = () => {
               {event.title}
             </h3>
             <p style={{ color: '#ccc', margin: '6px 0', fontSize: '0.85rem' }}>
-              TBD | {event.location}
-              {/* {formatDate(event.date)} | {event.location} */}
+              {/* TBD | {event.location} */}
+              {formatDate(event.date)} | {event.location}
             </p>
             <p style={{ color: '#999', lineHeight: 1.6 }}>
               {event.description}
             </p>
-            {/* <Link href={'/events/kafila'}>
+            <Link href={'/events/gabru'}>
             <button
                 style={BUTTON_STYLE}
                 // Inline pseudo-classes for a simple hover effect since we are using inline styles
@@ -221,7 +222,7 @@ const EventsSection: React.FC = () => {
             >
                 GET TICKETS
             </button>
-            </Link> */}
+            </Link>
           </div>
         </div>
       ))}

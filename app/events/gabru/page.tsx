@@ -8,9 +8,9 @@ import { Plus, Minus } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export const EVENT_DATA = {
-  title: "BAN KAFILA",
-  slug: "kafila",
-  date: "2026-01-17T00:00:00",
+  title: "Gulabi & Gabru Night",
+  slug: "gabru",
+  date: "2026-02-08T00:00:00",
   location: "PAC Ground, Kanpur",
   description:
     "A convergence of light and sound. The city's largest industrial techno gathering returns.",
@@ -45,7 +45,7 @@ export const EVENT_DATA = {
     {
       id: "vip",
       name: "VIP PRIME TABLE",
-      price: "₹99999",
+      price: "₹29999",
       status: "AVAILABLE",
       features: [
         "Limited for 4 people",
@@ -60,7 +60,7 @@ export const EVENT_DATA = {
     {
       id: "vvip",
       name: "VVIP ROYAL TABLE",
-      price: "₹199999",
+      price: "₹39999",
       status: "AVAILABLE",
       features: [
         "Limited for 6 people",

@@ -94,7 +94,7 @@ export async function POST(req: Request) {
         .join('');
 
       await transporter.sendMail({
-        from: '"BAN KAFILA" <management@scivvas.com>',
+        from: '"Gulabi & Gabru Night" <management@scivvas.com>',
         to: order.email,
         subject: '🎟️ Your Event Ticket',
         html: `
@@ -152,7 +152,7 @@ export async function POST(req: Request) {
     /* ===== Refund Email ===== */
     try {
       await transporter.sendMail({
-        from: '"BAN KAFILA" <management@scivvas.com>',
+        from: '"Gulabi & Gabru Night" <management@scivvas.com>',
         to: order.email,
         subject: '💸 Refund Processed',
         html: `

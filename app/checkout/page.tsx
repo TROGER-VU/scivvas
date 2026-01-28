@@ -11,7 +11,7 @@ import {
   MapPin,
   BadgePercent
 } from 'lucide-react';
-import { EVENT_DATA } from '@/app/events/kafila/page';
+import { EVENT_DATA } from '@/app/events/gabru/page';
 
 /* ===================== Razorpay Types ===================== */
 
@@ -169,7 +169,7 @@ function CheckoutContent() {
   }, [searchParams]);
 
   if (!checkoutData) {
-    router.replace('/events/kafila');
+    router.replace('/events/gabru');
     return null;
   }
 
