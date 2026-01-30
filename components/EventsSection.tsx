@@ -10,12 +10,12 @@ const MOCK_EVENT_DATA = [
     id: 1, 
     status: 'UPCOMING', 
     date: '2026-02-08', 
-    title: 'Gulabi & Gabru Night',
+    title: 'Reveal Soon',
     slug: 'gabru', 
     location: 'PAC Ground, Kanpur', 
     img: 'url("/gabr.jpeg")',
     description:
-      <>SCIVVAS Entertainment & Food Chariot Crew proudly present an electrifying musical evening that blends glamour, energy, and pure desi swag — GULABI & GABRU NIGHT. <br/>
+      <>SCIVVAS Entertainment & Food Chariot Crew proudly present an electrifying musical evening that blends glamour, energy, and pure desi swag. <br/>
       Get ready for an unforgettable night as some of the most loved names in Punjabi, Haryanvi & Indie music come together on one massive stage.</>
   },
   { 
@@ -212,7 +212,7 @@ const EventsSection: React.FC = () => {
             <p style={{ color: '#999', lineHeight: 1.6 }}>
               {event.description}
             </p>
-            <Link href={'/events/gabru'}>
+            {/* <Link href={'/events/gabru'}>
             <button
                 style={BUTTON_STYLE}
                 // Inline pseudo-classes for a simple hover effect since we are using inline styles
@@ -222,7 +222,7 @@ const EventsSection: React.FC = () => {
             >
                 GET TICKETS
             </button>
-            </Link>
+            </Link> */}
           </div>
         </div>
       ))}

@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const NEXT_EVENT_DATE = "2026-02-08T00:00:00";
-  const EVENT_NAME = "Gulabi & Gabru Night ";
+  const EVENT_NAME = "Reveal Soon ";
 
   return (
     // 1. Use 'dvh' for mobile browser bar compatibility
