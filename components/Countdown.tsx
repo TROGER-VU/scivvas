@@ -106,7 +106,7 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate, eventName }) => {
                 // Optional: A little shadow to separate from background
                 textShadow: '0 2px 5px rgba(0, 0, 0, 0.5)'
             }}>
-                {isFinished ? 'The Show Is Live !' : <>Upcoming Event: <br/> {eventName} </>}
+                {isFinished ? 'The Show Is Live!' : <>Upcoming Event: <br/> {eventName} </>}
             </h2>
 
             {/* Countdown Grid/Flex */}

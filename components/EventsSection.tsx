@@ -13,7 +13,7 @@ const MOCK_EVENT_DATA = [
     title: 'Gulabi & Gabru Night',
     slug: 'gabru', 
     location: 'PAC Ground, Kanpur', 
-    img: 'url("/gabru.jpeg")',
+    img: 'url("/gabr.jpeg")',
     description:
       <>SCIVVAS Entertainment & Food Chariot Crew proudly present an electrifying musical evening that blends glamour, energy, and pure desi swag — GULABI & GABRU NIGHT. <br/>
       Get ready for an unforgettable night as some of the most loved names in Punjabi, Haryanvi & Indie music come together on one massive stage.</>
