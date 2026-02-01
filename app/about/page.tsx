@@ -12,12 +12,12 @@ import PixelTransition from '@/components/PixelTransition';
 
 export default function AboutPage() {
     const PIXEL_CARDS = [
-        {
-            id: 1,
-            img: './team/arpan.png',
-            name: 'Arpan Shukla',
-            text: <>Director</>
-        },
+        // {
+        //     id: 1,
+        //     img: './team/arpan.png',
+        //     name: 'Arpan Shukla',
+        //     text: <>Director</>
+        // },
         {
             id: 2,
             img: './logomain.png',
